@@ -1,0 +1,12 @@
+{
+  "name": "maledorak-private-marketplace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync-marketplace": "node scripts/sync-marketplace.js"
+  },
+  "dependencies": {
+    "glob": "^11.0.0"
+  }
+}

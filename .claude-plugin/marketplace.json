@@ -1,0 +1,27 @@
+{
+  "name": "maledorak-private-marketplace",
+  "owner": {
+    "name": "Mariusz (Maledorak) Korzekwa"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugin marketplace",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "common",
+      "source": "./plugins/common",
+      "description": "Common development skill including git-commit (Conventional Commits 1.0.0)",
+      "version": "1.0.0",
+      "keywords": [
+        "git",
+        "commit",
+        "conventional-commits",
+        "development"
+      ],
+      "author": {
+        "name": "Mariusz (Maledorak) Korzekwa"
+      }
+    }
+  ]
+}

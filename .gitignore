@@ -18,5 +18,6 @@ public
 .pocs/
 
 # AI
+.claude/settings.local.json
 .claude/plans
 .claude/.temp
