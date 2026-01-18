@@ -56,7 +56,7 @@ members:
 | Check | File | If Missing |
 |-------|------|------------|
 | **Who** | `lore/0-session/current-user.md` | Auto-generated from `LORE_SESSION_CURRENT_USER` env, or manual setup |
-| **What** | `lore/0-session/current-task.md` | Pick from `lore/0-session/next-tasks.md`, run `node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --task NNNN` |
+| **What** | `lore/0-session/current-task.md` | Pick from `lore/0-session/next-tasks.md`, use MCP tool `lore-set-task` |
 
 If `current-user.md` missing, respond:
 > I need to know who I'm working with. Configure in `.claude/settings.local.json`:
@@ -65,10 +65,7 @@ If `current-user.md` missing, respond:
 > ```
 
 If `current-task.md` missing, respond:
-> No active task. Pick from `lore/0-session/next-tasks.md` and run:
-> ```bash
-> node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --task NNNN
-> ```
+> No active task. Pick from `lore/0-session/next-tasks.md` and I'll use `lore-set-task` to set it.
 
 ## Task-Gated Development
 
@@ -100,7 +97,7 @@ Context persistence for stateless Claude sessions. Use `/lore` skill when workin
 | `0-session/next-tasks.md` | Available tasks (auto-generated) | No |
 | `README.md` | Full index with Mermaid (heavy) | Yes |
 
-**Setup:** `node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --user <name> --task NNNN`
+**Setup:** Use MCP tools `lore-set-user` and `lore-set-task`
 
 ## Quick Reference
 
@@ -130,7 +127,7 @@ Local session state. Files are gitignored except `team.yaml`.
 | `team.yaml` | Team data (source of truth) |
 | `next-tasks.md` | Available tasks by priority |
 
-**Setup:** `node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --user <name> --task NNNN`
+**Setup:** Use MCP tools `lore-set-user` and `lore-set-task`
 ```
 
 #### lore/1-tasks/CLAUDE.md
@@ -239,13 +236,18 @@ Additional context.
 {
   "permissions": {
     "allow": [
-      "Bash(node ${CLAUDE_PLUGIN_ROOT}/scripts/lore-generate-index.js:*)",
-      "Bash(node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js:*)",
-      "Skill(lore)"
+      "mcp__plugin_lore_lore",
+      "Skill(lore)",
+      "Skill(lore-git)"
     ]
   }
 }
 ```
+
+**Permission breakdown:**
+- `mcp__plugin_lore_lore` - MCP tools: `lore-set-user`, `lore-set-task`, `lore-show-session`, `lore-list-users`, `lore-clear-task`, `lore-generate-index`
+- `Skill(lore)` - Task-gated development workflow skill
+- `Skill(lore-git)` - Git commits with Conventional Commits + lore task references
 
 #### .claude/settings.local.json (user-specific, gitignored)
 
@@ -295,11 +297,7 @@ Add to `.claude/settings.json`:
 
 ## Verification
 
-After installation, run:
-
-```bash
-node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --show
-```
+After installation, ask Claude to use the MCP tool `lore-show-session`.
 
 Should show "No user set" and "No task set" (expected for fresh install).
 
@@ -339,10 +337,9 @@ Set up the project foundation.
 - [ ] Project structure created
 - [ ] Dependencies installed
 EOF
-
-# Set as current task
-node ${CLAUDE_PLUGIN_ROOT}/scripts/set-session.js --task 0001
 ```
+
+Then ask Claude to set it as current task using `lore-set-task` MCP tool with task ID `0001`.
 
 ---
 
