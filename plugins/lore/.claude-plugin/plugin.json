@@ -1,6 +1,6 @@
 {
   "name": "lore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",
@@ -10,10 +10,7 @@
   "mcpServers": {
     "lore": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/lore-mcp.js"],
-      "env": {
-        "CLAUDE_PROJECT_DIR": "${CLAUDE_PROJECT_DIR}"
-      }
+      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/lore-mcp.js"]
     }
   }
 }
