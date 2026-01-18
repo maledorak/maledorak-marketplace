@@ -37,12 +37,13 @@ When you trust the repository in Claude Code, the marketplace and plugins will b
 
 1. Add the marketplace:
    ```
-   /plugin marketplace add github.com/maledorak/maledorak-private-marketplace
+   /plugin marketplace add maledorak/maledorak-private-marketplace
    ```
 
 2. Install desired plugins:
    ```
    /plugin install common@maledorak-private-marketplace
+   /plugin install lore@maledorak-private-marketplace
    ```
 
 ## Verifying Installation
@@ -73,7 +74,22 @@ Update a specific plugin:
 
 - Claude Code CLI
 - GitHub access to `maledorak/maledorak-private-marketplace` repository (private)
-- GitHub authentication configured via one of:
-  - SSH keys (`git@github.com` access)
-  - GitHub CLI (`gh auth login`)
-  - Personal access token
+
+### Authentication for Private Repository
+
+Since this is a private repository, you need to configure GitHub authentication. Set one of these environment variables in your shell config (`.bashrc`, `.zshrc`):
+
+```bash
+# Option 1: GitHub Personal Access Token (recommended)
+export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+
+# Option 2: Alternative token variable
+export GH_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+```
+
+The token needs `repo` scope for private repository access.
+
+**Create a token:**
+1. Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Generate new token with `repo` scope
+3. Copy and set as `GITHUB_TOKEN`
