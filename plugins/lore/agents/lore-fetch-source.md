@@ -1,6 +1,8 @@
 ---
+name: lore-fetch-source
 description: Fetches and archives web sources for the current lore task. Use PROACTIVELY when user mentions URLs, articles, documentation, or research sources that should be saved to the task.
-capabilities: ["fetch web content", "download images", "create markdown sources", "filter non-contextual images", "clean up web artifacts"]
+tools: WebFetch, WebSearch, Bash, Read, Write, Glob
+model: sonnet
 ---
 
 # Lore Fetch Source Agent
