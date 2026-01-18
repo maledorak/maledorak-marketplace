@@ -1,7 +1,8 @@
 {
   "name": "maledorak-private-marketplace",
   "owner": {
-    "name": "Mariusz (Maledorak) Korzekwa"
+    "name": "Mariusz (Maledorak) Korzekwa",
+    "email": "mariusz@korzekwa.dev"
   },
   "metadata": {
     "description": "Personal Claude Code plugin marketplace",
@@ -20,8 +21,31 @@
         "development"
       ],
       "author": {
-        "name": "Mariusz (Maledorak) Korzekwa"
-      }
+        "name": "Mariusz (Maledorak) Korzekwa",
+        "email": "mariusz@korzekwa.dev"
+      },
+      "skills": "./skills"
+    },
+    {
+      "name": "lore",
+      "source": "./plugins/lore",
+      "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
+      "version": "1.0.0",
+      "keywords": [
+        "tasks",
+        "adr",
+        "wiki",
+        "session",
+        "lore",
+        "project-management"
+      ],
+      "author": {
+        "name": "Mariusz (Maledorak) Korzekwa",
+        "email": "mariusz@korzekwa.dev"
+      },
+      "skills": "./skills",
+      "hooks": "./hooks/hooks.json",
+      "mcpServers": "./servers"
     }
   ]
 }

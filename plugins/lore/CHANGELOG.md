@@ -1,0 +1,31 @@
+# Changelog
+
+All notable changes to the Lore plugin will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2025-01-18
+
+### Added
+
+- MCP server with session and task management tools:
+  - `lore-set-user` - Set current user from team.yaml
+  - `lore-set-task` - Set current task by ID (creates symlink)
+  - `lore-show-session` - Show current session state
+  - `lore-list-users` - List available users from team.yaml
+  - `lore-clear-task` - Clear current task symlink
+  - `lore-generate-index` - Regenerate lore/README.md and next-tasks.md
+- Skills:
+  - `lore` - Task-gated development workflow with note types (Q/I/R/S/G)
+  - `lore-git` - Git commits with Conventional Commits 1.0.0 + lore task references
+- Hooks:
+  - `SessionStart` - Auto-set user from `LORE_SESSION_CURRENT_USER` env var
+  - `PostToolUse` - Regenerate index on lore file changes
+- Directory structure for `lore/`:
+  - `0-session/` - Session state (current-user, current-task, team.yaml)
+  - `1-tasks/` - Task management (active, blocked, archive, backlog)
+  - `2-adrs/` - Architecture Decision Records
+  - `3-wiki/` - Living documentation
+- Agent: `lore-fetch-source` - Fetch web sources and save to current task's `sources/` directory
+- Session file: `current-task.json` - Task metadata (id + path) for agents

@@ -1,0 +1,13 @@
+{
+  "name": "lore",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.0",
+    "glob": "^13.0.0",
+    "gray-matter": "^4.0.3",
+    "yaml": "^2.8.2",
+    "zod": "^4.3.5"
+  }
+}

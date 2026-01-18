@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Common development skill including git-commit (Conventional Commits 1.0.0)",
   "author": {
-    "name": "Mariusz (Maledorak) Korzekwa"
+    "name": "Mariusz (Maledorak) Korzekwa",
+    "email": "mariusz@korzekwa.dev"
   },
   "keywords": ["git", "commit", "conventional-commits", "development"],
   "skills": "./skills"

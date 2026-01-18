@@ -7,6 +7,7 @@ Personal private marketplace for Claude Code plugins maintained by Maledorak.
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | `common` | 1.0.0 | Common development skill: git-commit for Conventional Commits |
+| `lore` | 1.0.0 | Manage lore/ directory for tracking tasks, ADRs, wiki, and session |
 
 ## Installation
 
