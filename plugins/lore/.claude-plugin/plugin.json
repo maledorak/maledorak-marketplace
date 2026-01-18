@@ -7,8 +7,8 @@
     "email": "mariusz@korzekwa.dev"
   },
   "keywords": ["tasks", "adr", "wiki", "session", "lore", "project-management"],
-  "skills": "./skills",
-  "agents": "./agents",
+  "skills": "./skills/",
+  "agents": "./agents/",
   "hooks": "./hooks/hooks.json",
   "mcpServers": {
     "lore": {

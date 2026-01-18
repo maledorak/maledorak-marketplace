@@ -7,5 +7,5 @@
     "email": "mariusz@korzekwa.dev"
   },
   "keywords": ["git", "commit", "conventional-commits", "development"],
-  "skills": "./skills"
+  "skills": "./skills/"
 }
