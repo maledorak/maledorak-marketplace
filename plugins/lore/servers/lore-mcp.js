@@ -23,9 +23,10 @@ import { globSync } from 'glob';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Get project directory from environment or use current working directory
+// Get project directory from current working directory
+// MCP servers run with cwd set to the project directory
 function getProjectDir() {
-  return process.env.CLAUDE_PROJECT_DIR || process.cwd();
+  return process.cwd();
 }
 
 function getLoreDir() {
