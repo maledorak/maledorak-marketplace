@@ -8,7 +8,7 @@
   },
   "keywords": ["tasks", "adr", "wiki", "session", "lore", "project-management"],
   "skills": "./skills/",
-  "agents": "./agents/",
+  "agents": ["./agents/lore-fetch-source.md"],
   "hooks": "./hooks/hooks.json",
   "mcpServers": {
     "lore": {
