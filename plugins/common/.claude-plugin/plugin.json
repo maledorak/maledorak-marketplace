@@ -6,6 +6,5 @@
     "name": "Mariusz (Maledorak) Korzekwa",
     "email": "mariusz@korzekwa.dev"
   },
-  "keywords": ["git", "commit", "conventional-commits", "development"],
-  "skills": "./skills/"
+  "keywords": ["git", "commit", "conventional-commits", "development"]
 }
