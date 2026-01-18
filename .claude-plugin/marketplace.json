@@ -23,8 +23,7 @@
       "author": {
         "name": "Mariusz (Maledorak) Korzekwa",
         "email": "mariusz@korzekwa.dev"
-      },
-      "skills": "./skills"
+      }
     },
     {
       "name": "lore",
@@ -42,10 +41,7 @@
       "author": {
         "name": "Mariusz (Maledorak) Korzekwa",
         "email": "mariusz@korzekwa.dev"
-      },
-      "skills": "./skills",
-      "hooks": "./hooks/hooks.json",
-      "mcpServers": "./servers"
+      }
     }
   ]
 }

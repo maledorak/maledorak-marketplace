@@ -69,28 +69,9 @@ async function syncMarketplace() {
         pluginEntry.tags = pluginJson.tags;
       }
 
-      // Add component path fields if present
-      if (pluginJson.commands) {
-        pluginEntry.commands = pluginJson.commands;
-      }
-      if (pluginJson.agents) {
-        pluginEntry.agents = pluginJson.agents;
-      }
-      if (pluginJson.skills) {
-        pluginEntry.skills = pluginJson.skills;
-      }
-      if (pluginJson.hooks) {
-        pluginEntry.hooks = pluginJson.hooks;
-      }
-      if (pluginJson.mcpServers) {
-        pluginEntry.mcpServers = pluginJson.mcpServers;
-      }
-      if (pluginJson.outputStyles) {
-        pluginEntry.outputStyles = pluginJson.outputStyles;
-      }
-      if (pluginJson.lspServers) {
-        pluginEntry.lspServers = pluginJson.lspServers;
-      }
+      // NOTE: Don't copy component paths (commands, agents, skills, hooks, mcpServers, lspServers)
+      // These are defined in the plugin's own plugin.json and will be read from there when installed.
+      // Marketplace entries only need metadata, not internal plugin config.
 
       // Add marketplace-specific fields if present
       if (pluginJson.strict !== undefined) {
