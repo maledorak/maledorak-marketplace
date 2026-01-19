@@ -11,16 +11,28 @@ Manage lore/ directory for tracking tasks, code history, and project state.
 
 ## Installation
 
-From this marketplace:
+### Option 1: Ask Claude (Recommended)
+
+Open your project in Claude Code and say:
+
+```
+Install lore framework following: https://github.com/maledorak/maledorak-private-marketplace/blob/main/plugins/lore/skills/lore/INSTALL.md
+I use Claude Code Remote/Desktop/CLI (pick one)
+```
+
+Claude will read the instructions and copy all files manually.
+
+### Option 2: Plugin (CLI only)
+
 ```shell
 /plugin install lore@maledorak-private-marketplace
 ```
 
+> **Note:** Plugins only work in Claude Code CLI. For Desktop/Web, use Option 1.
+
 ## Usage
 
 The skill is automatically invoked when working with `lore/` directory content.
-
-For first-time setup, see `INSTALL.md` in the skill directory or ask Claude to "bootstrap lore".
 
 ## MCP Tools
 
