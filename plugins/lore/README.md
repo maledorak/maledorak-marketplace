@@ -28,7 +28,7 @@ Claude will read the instructions and copy all files manually.
 /plugin install lore@maledorak-private-marketplace
 ```
 
-> **Note:** Plugins only work in Claude Code CLI. For Desktop/Web, use Option 1.
+> **Note:** Plugins only work in Claude Code CLI for now. For Desktop/Web, use Option 1.
 
 ## Usage
 
