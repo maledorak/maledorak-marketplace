@@ -1,0 +1,45 @@
+{
+  "name": "@maledorak/lore-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for lore framework - AI-readable project memory with task/ADR/wiki management",
+  "bin": {
+    "lore-mcp": "./bin/lore-mcp.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.0",
+    "glob": "^10.0.0",
+    "gray-matter": "^4.0.0",
+    "yaml": "^2.0.0",
+    "zod": "^3.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "claude-code",
+    "lore",
+    "ai-memory",
+    "project-management",
+    "task-tracking",
+    "adr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maledorak/maledorak-private-marketplace"
+  },
+  "homepage": "https://github.com/maledorak/maledorak-private-marketplace/tree/main/packages/lore-mcp",
+  "author": {
+    "name": "Mariusz (Maledorak) Korzekwa",
+    "email": "mariusz@korzekwa.dev"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

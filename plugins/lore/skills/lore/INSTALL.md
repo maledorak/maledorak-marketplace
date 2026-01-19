@@ -2,7 +2,7 @@
 
 First-time setup for installing this skill in a new project.
 
-## Quick Install
+## Quick Install (Plugin)
 
 1. Install the lore plugin from marketplace
 2. Run `/lore` and ask Claude to "bootstrap lore framework"
@@ -11,7 +11,106 @@ Claude will create all required directories, files, and configurations.
 
 ---
 
-## Manual Installation
+## Portable Setup (Claude Code Web)
+
+> **For Claude Code Web or projects that can't use plugins.**
+> Local MCP servers from plugins don't work on Claude Code Web.
+> Use this setup to "port" lore to any repository.
+
+### 1. Add MCP Server
+
+Create/update `.mcp.json` in project root:
+
+```json
+{
+  "mcpServers": {
+    "lore": {
+      "command": "npx",
+      "args": ["-y", "@maledorak/lore-mcp@latest"]
+    }
+  }
+}
+```
+
+### 2. Copy Skills
+
+Copy skills to `.claude/skills/`:
+
+```bash
+mkdir -p .claude/skills
+
+# Option A: Clone from marketplace repo
+git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
+cp -r /tmp/lore-tmp/plugins/lore/skills/lore .claude/skills/
+cp -r /tmp/lore-tmp/plugins/lore/skills/lore-git .claude/skills/
+rm -rf /tmp/lore-tmp
+
+# Option B: Manually create skills (see skill files in this repo)
+```
+
+### 3. Add Permissions
+
+Add to `.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__lore",
+      "Skill(lore)",
+      "Skill(lore-git)"
+    ]
+  }
+}
+```
+
+### 4. Create lore/ Structure
+
+```bash
+mkdir -p lore/{0-session,1-tasks/{backlog,active,blocked,archive},2-adrs,3-wiki/project}
+```
+
+### 5. Create team.yaml
+
+Create `lore/0-session/team.yaml`:
+
+```yaml
+your-name:
+  name: "Your Full Name"
+  role: "Your Role"
+  focus: "What you work on"
+```
+
+### 6. Add to .gitignore
+
+```gitignore
+# Lore framework - session-local files
+lore/0-session/current-user.md
+lore/0-session/current-task.md
+lore/0-session/current-task.json
+lore/0-session/next-tasks.md
+```
+
+### Verify Setup
+
+Ask Claude to run `lore-show-session` MCP tool. Should show "User: not set" and "Task: not set".
+
+### What Works on Claude Code Web
+
+| Component | Works? |
+|-----------|--------|
+| Skills (`/lore`, `/lore-git`) | ✅ Yes |
+| MCP tools (via npx) | ✅ Yes |
+| Agents (`lore-fetch-source`) | ❌ No (plugin only) |
+| Hooks (SessionStart, PostToolUse) | ❌ No (plugin only) |
+
+> **Note:** Without hooks, you'll need to manually:
+> - Set user at session start: ask Claude to use `lore-set-user`
+> - Regenerate index after changes: ask Claude to use `lore-generate-index`
+
+---
+
+## Manual Installation (Full)
 
 ### Step 1: Create Directory Structure
 
