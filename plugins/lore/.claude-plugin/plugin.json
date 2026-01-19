@@ -1,6 +1,6 @@
 {
   "name": "lore",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",

@@ -101,14 +101,14 @@ style: apply formatting
 
 Indicate breaking changes in **two ways**:
 
-### Pattern 1: With `!` before `:`
+### Pattern 1: Exclamation mark suffix
 ```
 feat(lore-0025)!: change response format
 
 BREAKING CHANGE: API now returns JSON instead of XML
 ```
 
-### Pattern 2: With `BREAKING CHANGE:` footer
+### Pattern 2: Footer notation
 ```
 feat(lore-0025): update settings schema
 
