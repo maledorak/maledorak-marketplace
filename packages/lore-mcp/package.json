@@ -1,6 +1,6 @@
 {
   "name": "@maledorak/lore-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for lore framework - AI-readable project memory with task/ADR/wiki management",
   "bin": {
     "lore-mcp": "./bin/lore-mcp.js"
