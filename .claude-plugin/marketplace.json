@@ -29,7 +29,7 @@
       "name": "lore",
       "source": "./plugins/lore",
       "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "keywords": [
         "tasks",
         "adr",

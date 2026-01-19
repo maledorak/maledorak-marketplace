@@ -5,6 +5,14 @@ All notable changes to the Lore plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2026-01-19
+
+### Changed
+
+- Plugin now uses `npx @maledorak/lore-mcp` instead of bundled server
+- Removed `servers/` directory - MCP server is now only in npm package
+- Single source of truth for MCP server code
+
 ## [1.0.5] - 2026-01-19
 
 ### Added
