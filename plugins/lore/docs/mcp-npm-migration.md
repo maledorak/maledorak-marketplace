@@ -98,7 +98,10 @@ packages/lore-mcp/
 
 Automatyczna publikacja przez `.github/workflows/publish-lore-mcp.yml`:
 - Trigger: tag `lore-mcp@*` lub manual dispatch
-- Wymaga: `NPM_TOKEN` secret
+- Wymaga: `NPM_TOKEN` secret (scoped do `@maledorak/lore-mcp`)
+
+> **Uwaga**: npm Trusted Publishing (OIDC) z `--provenance` wymaga publicznego repozytorium.
+> Ponieważ `maledorak-private-marketplace` jest prywatne, używamy token-based auth.
 
 ### Zmiany w pluginie
 

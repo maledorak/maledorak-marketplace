@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Plugin now uses `npx @maledorak/lore-mcp` instead of bundled server
 - Removed `servers/` directory - MCP server is now only in npm package
 - Single source of truth for MCP server code
+- GitHub Actions workflow for automated npm publishing with scoped token
 
 See [MCP npm Migration Report](docs/mcp-npm-migration.md) for background.
 
