@@ -120,7 +120,7 @@ function findTask(loreDir, taskId) {
   const tasksDir = join(loreDir, '1-tasks');
   const taskNum = taskId.replace(/^0+/, '') || '0';
 
-  for (const statusDir of ['active', 'blocked', 'archive']) {
+  for (const statusDir of ['active', 'blocked', 'archive', 'backlog']) {
     const statusPath = join(tasksDir, statusDir);
     if (!existsSync(statusPath)) continue;
 
@@ -268,7 +268,7 @@ function parseTasks(loreDir) {
   const tasks = new Map();
   const tasksBase = join(loreDir, '1-tasks');
 
-  for (const subdir of ['active', 'blocked', 'archive']) {
+  for (const subdir of ['active', 'blocked', 'archive', 'backlog']) {
     const subdirPath = join(tasksBase, subdir);
     if (!existsSync(subdirPath)) continue;
 
@@ -307,6 +307,7 @@ function parseTasks(loreDir) {
         let status = meta.status || 'active';
         if (subdir === 'archive') status = 'completed';
         else if (subdir === 'blocked') status = 'blocked';
+        else if (subdir === 'backlog') status = 'backlog';
 
         tasks.set(String(meta.id || taskId), {
           id: String(meta.id || taskId),
@@ -378,6 +379,7 @@ function generateMermaid(tasks, adrs) {
   const completed = [...tasks.values()].filter(t => t.status === 'completed');
   const active = [...tasks.values()].filter(t => t.status === 'active');
   const blocked = [...tasks.values()].filter(t => t.status === 'blocked');
+  const backlog = [...tasks.values()].filter(t => t.status === 'backlog');
 
   if (completed.length > 0) {
     lines.push('    subgraph Completed');
@@ -400,6 +402,15 @@ function generateMermaid(tasks, adrs) {
   if (blocked.length > 0) {
     lines.push('    subgraph Blocked');
     for (const t of blocked.sort((a, b) => a.id.localeCompare(b.id))) {
+      const shortTitle = t.title.length > 25 ? t.title.slice(0, 25) + '...' : t.title;
+      lines.push(`        T${t.id}["${t.id}: ${shortTitle}"]`);
+    }
+    lines.push('    end');
+  }
+
+  if (backlog.length > 0) {
+    lines.push('    subgraph Backlog');
+    for (const t of backlog.sort((a, b) => a.id.localeCompare(b.id))) {
       const shortTitle = t.title.length > 25 ? t.title.slice(0, 25) + '...' : t.title;
       lines.push(`        T${t.id}["${t.id}: ${shortTitle}"]`);
     }
@@ -443,7 +454,7 @@ function generateStatusTable(tasks, blocks) {
     '|:---|:------|:-----|:-------|:-----------|:-------|:-----|',
   ];
 
-  const statusOrder = { active: 0, blocked: 1, completed: 2 };
+  const statusOrder = { active: 0, blocked: 1, backlog: 2, completed: 3 };
   const sortedTasks = [...tasks.values()].sort((a, b) => {
     const orderDiff = (statusOrder[a.status] ?? 4) - (statusOrder[b.status] ?? 4);
     return orderDiff !== 0 ? orderDiff : a.id.localeCompare(b.id);
@@ -519,9 +530,10 @@ function generateNext(tasks, blocks, ready) {
 
   const activeCount = [...tasks.values()].filter(t => t.status === 'active').length;
   const blockedCount = [...tasks.values()].filter(t => t.status === 'blocked').length;
+  const backlogCount = [...tasks.values()].filter(t => t.status === 'backlog').length;
   const completedCount = [...tasks.values()].filter(t => t.status === 'completed').length;
 
-  lines.push(`**Active:** ${activeCount} | **Blocked:** ${blockedCount} | **Completed:** ${completedCount}`);
+  lines.push(`**Active:** ${activeCount} | **Blocked:** ${blockedCount} | **Backlog:** ${backlogCount} | **Completed:** ${completedCount}`);
   lines.push('');
 
   if (ready.length > 0) {
@@ -581,15 +593,16 @@ Quick reference for task dependencies, status, and ADR relationships.`);
 
   const activeCount = [...tasks.values()].filter(t => t.status === 'active').length;
   const blockedCount = [...tasks.values()].filter(t => t.status === 'blocked').length;
+  const backlogCount = [...tasks.values()].filter(t => t.status === 'backlog').length;
   const completedCount = [...tasks.values()].filter(t => t.status === 'completed').length;
   const adrCount = adrs.size;
 
   sections.push(`
 ## Quick Stats
 
-| Active | Blocked | Completed | ADRs |
-|:------:|:-------:|:---------:|:----:|
-| ${activeCount} | ${blockedCount} | ${completedCount} | ${adrCount} |`);
+| Active | Blocked | Backlog | Completed | ADRs |
+|:------:|:-------:|:-------:|:---------:|:----:|
+| ${activeCount} | ${blockedCount} | ${backlogCount} | ${completedCount} | ${adrCount} |`);
 
   if (ready.length > 0) {
     sections.push('\n## Ready to Start\n\nThese tasks have no blockers (or all blockers completed):\n');
@@ -619,6 +632,7 @@ Quick reference for task dependencies, status, and ADR relationships.`);
 **Task Status:**
 - \`active\` — Work can proceed
 - \`blocked\` — Waiting on dependencies
+- \`backlog\` — Planned but not yet started
 - \`completed\` — Done, in archive
 
 **Graph Arrows:**
@@ -626,7 +640,7 @@ Quick reference for task dependencies, status, and ADR relationships.`);
 - \`ADR -.-> Task\` — ADR informs Task
 `);
 
-  return { readme: sections.join('\n'), next: nextContent, stats: { activeCount, blockedCount, completedCount, adrCount } };
+  return { readme: sections.join('\n'), next: nextContent, stats: { activeCount, blockedCount, backlogCount, completedCount, adrCount } };
 }
 
 function runGenerateIndex(loreDir) {
@@ -821,7 +835,7 @@ server.registerTool(
         'Generated:',
         ...result.generated.map(p => `- ${p}`),
         '',
-        `Stats: ${result.stats.activeCount} active, ${result.stats.blockedCount} blocked, ${result.stats.completedCount} completed, ${result.stats.adrCount} ADRs`,
+        `Stats: ${result.stats.activeCount} active, ${result.stats.blockedCount} blocked, ${result.stats.backlogCount} backlog, ${result.stats.completedCount} completed, ${result.stats.adrCount} ADRs`,
       ];
 
       return { content: [{ type: 'text', text: lines.join('\n') }] };
