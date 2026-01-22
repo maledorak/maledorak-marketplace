@@ -1,4 +1,4 @@
-name: Publish @maledorak/lore-mcp
+name: Publish lore-mcp
 
 on:
   push:
@@ -51,13 +51,13 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          name: "@maledorak/lore-mcp@${{ steps.version.outputs.version }}"
+          name: "lore-mcp@${{ steps.version.outputs.version }}"
           body: |
-            Published to npm: https://www.npmjs.com/package/@maledorak/lore-mcp
+            Published to npm: https://www.npmjs.com/package/lore-mcp
 
             Install:
             ```
-            npx @maledorak/lore-mcp@${{ steps.version.outputs.version }}
+            npx lore-mcp@${{ steps.version.outputs.version }}
             ```
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
