@@ -12,6 +12,7 @@ Claude Code plugin for managing `lore/` directory - tracking tasks, ADRs, wiki, 
 | `lore-list-users` | List available users from team.yaml |
 | `lore-clear-task` | Clear current task symlink |
 | `lore-generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore-validate` | Validate frontmatter in tasks, ADRs, and notes |
 
 ## Environment Variables
 

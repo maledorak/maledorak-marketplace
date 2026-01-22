@@ -11,17 +11,22 @@ Notes live inside complex tasks (in `notes/` subdirectory). Schema:
 title: "Note Title"
 type: question | idea | research | synthesis | generation
 status: seed | developing | mature | superseded
-spawned_from: notes/Q-parent-note.md    # Optional: what led to this
-spawns:                                   # Optional: what this led to
-  - notes/R-child-research.md
-  - notes/S-conclusion.md
 tags: [tag1, tag2]
 links: []
 history:
   - date: YYYY-MM-DD
     status: seed
     who: mariusz
+    spawned_from:                         # Optional: what led to this
+      - notes/Q-parent-note.md
     note: "Note created"
+  - date: YYYY-MM-DD
+    status: developing
+    who: claude
+    spawns:                               # Optional: what this led to
+      - notes/R-child-research.md
+      - notes/S-conclusion.md
+    note: "Spawned research and synthesis"
 ---
 ```
 
@@ -32,8 +37,6 @@ history:
 | `title` | Yes | Human-readable title |
 | `type` | Yes | Note type: question, idea, research, synthesis, generation |
 | `status` | Yes | Lifecycle: seed, developing, mature, superseded |
-| `spawned_from` | No | Relative path to parent note |
-| `spawns` | No | List of relative paths to child notes |
 | `tags` | No | Categorization tags |
 | `links` | No | External URLs |
 | `history` | Yes | Array of status change entries |
@@ -44,7 +47,9 @@ history:
 |-------|----------|-------------|
 | `date` | Yes | ISO date (YYYY-MM-DD) |
 | `status` | Yes | seed, developing, mature, superseded |
-| `who` | No | mariusz, bartek, claude |
+| `who` | Yes | Person/agent who made the change (string) |
+| `spawned_from` | No | Array of relative paths to parent notes (tracks when relationship was created) |
+| `spawns` | No | Array of relative paths to child notes (tracks when spawned) |
 | `by` | Conditional | Note path - **required** if status = `superseded` |
 | `note` | No | What happened |
 
@@ -173,7 +178,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: active
-    who: mariusz           # Optional: mariusz | bartek | claude
+    who: mariusz           # Required: person/agent who made the change
     by: ["NNNN"]           # Conditional: see below
     reason: pivot          # Conditional: only for canceled
     note: "Task created"   # Optional
@@ -200,7 +205,7 @@ history:
 |-------|----------|-------------|
 | `date` | Yes | ISO date (YYYY-MM-DD) |
 | `status` | Yes | active, blocked, completed, superseded, canceled |
-| `who` | No | mariusz, bartek, claude |
+| `who` | Yes | Person/agent who made the change (string) |
 | `by` | Conditional | Task ID array - required for `blocked` and `superseded` |
 | `reason` | Conditional | Required for `canceled`: pivot, obsolete, duplicate |
 | `note` | No | What happened |
@@ -278,7 +283,7 @@ history:
 |-------|----------|-------------|
 | `date` | Yes | ISO date (YYYY-MM-DD) |
 | `status` | Yes | proposed, accepted, deprecated, superseded |
-| `who` | No | mariusz, bartek, claude |
+| `who` | Yes | Person/agent who made the change (string) |
 | `by` | Conditional | ADR ID - **required** if status = `superseded` |
 | `note` | No | What happened |
 

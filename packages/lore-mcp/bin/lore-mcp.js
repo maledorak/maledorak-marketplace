@@ -9,6 +9,7 @@
  * - lore-list-users: List available users from team.yaml
  * - lore-clear-task: Clear current task symlink
  * - lore-generate-index: Regenerate lore/README.md and next-tasks.md
+ * - lore-validate: Validate frontmatter in tasks, ADRs, and notes
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
@@ -661,6 +662,366 @@ function runGenerateIndex(loreDir) {
 }
 
 // ============================================================================
+// Validation Schemas
+// ============================================================================
+
+// Valid enum values
+const TASK_TYPES = ['BUG', 'FEATURE', 'RESEARCH', 'REFACTOR', 'DOCS'];
+const TASK_STATUSES = ['active', 'blocked', 'completed', 'superseded', 'canceled', 'backlog'];
+const ADR_STATUSES = ['proposed', 'accepted', 'deprecated', 'superseded'];
+const NOTE_TYPES = ['question', 'idea', 'research', 'synthesis', 'generation'];
+const NOTE_STATUSES = ['seed', 'developing', 'mature', 'superseded'];
+const CANCEL_REASONS = ['pivot', 'obsolete', 'duplicate'];
+
+// Date validation regex (YYYY-MM-DD)
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+
+function validateTaskFrontmatter(meta, filePath) {
+  const errors = [];
+  const warnings = [];
+
+  // Required fields
+  if (!meta.id) errors.push('Missing required field: id');
+  if (!meta.title) errors.push('Missing required field: title');
+  if (!meta.type) errors.push('Missing required field: type');
+  if (!meta.status) errors.push('Missing required field: status');
+  if (!meta.history || !Array.isArray(meta.history) || meta.history.length === 0) {
+    errors.push('Missing required field: history (must be non-empty array)');
+  }
+
+  // Type validation
+  if (meta.type && !TASK_TYPES.includes(meta.type)) {
+    errors.push(`Invalid type: "${meta.type}". Must be one of: ${TASK_TYPES.join(', ')}`);
+  }
+
+  // Status validation
+  if (meta.status && !TASK_STATUSES.includes(meta.status)) {
+    errors.push(`Invalid status: "${meta.status}". Must be one of: ${TASK_STATUSES.join(', ')}`);
+  }
+
+  // ID format validation
+  if (meta.id && !/^\d+$/.test(String(meta.id))) {
+    errors.push(`Invalid id format: "${meta.id}". Must be numeric (e.g., "0001")`);
+  }
+
+  // History validation
+  if (meta.history && Array.isArray(meta.history)) {
+    meta.history.forEach((entry, idx) => {
+      const prefix = `history[${idx}]`;
+
+      // Required fields in history
+      if (!entry.date) errors.push(`${prefix}: Missing required field: date`);
+      if (!entry.status) errors.push(`${prefix}: Missing required field: status`);
+      if (!entry.who) errors.push(`${prefix}: Missing required field: who`);
+
+      // Date format
+      if (entry.date && !DATE_REGEX.test(entry.date)) {
+        errors.push(`${prefix}: Invalid date format: "${entry.date}". Must be YYYY-MM-DD`);
+      }
+
+      // Status in history
+      if (entry.status && !TASK_STATUSES.includes(entry.status)) {
+        errors.push(`${prefix}: Invalid status: "${entry.status}". Must be one of: ${TASK_STATUSES.join(', ')}`);
+      }
+
+      // Who validation - just check it's a non-empty string
+      if (entry.who && typeof entry.who !== 'string') {
+        errors.push(`${prefix}: "who" must be a string`);
+      }
+
+      // Conditional: by required for blocked/superseded
+      if ((entry.status === 'blocked' || entry.status === 'superseded') && !entry.by) {
+        errors.push(`${prefix}: Missing required field "by" for status "${entry.status}"`);
+      }
+
+      // Conditional: reason required for canceled
+      if (entry.status === 'canceled') {
+        if (!entry.reason) {
+          errors.push(`${prefix}: Missing required field "reason" for status "canceled"`);
+        } else if (!CANCEL_REASONS.includes(entry.reason)) {
+          errors.push(`${prefix}: Invalid reason: "${entry.reason}". Must be one of: ${CANCEL_REASONS.join(', ')}`);
+        }
+      }
+
+      // by should be array
+      if (entry.by && !Array.isArray(entry.by)) {
+        warnings.push(`${prefix}: "by" should be an array`);
+      }
+    });
+  }
+
+  // Optional array fields validation
+  if (meta.related_adr && !Array.isArray(meta.related_adr)) {
+    errors.push('related_adr must be an array');
+  }
+  if (meta.related_tasks && !Array.isArray(meta.related_tasks)) {
+    errors.push('related_tasks must be an array');
+  }
+  if (meta.tags && !Array.isArray(meta.tags)) {
+    errors.push('tags must be an array');
+  }
+  if (meta.links && !Array.isArray(meta.links)) {
+    errors.push('links must be an array');
+  }
+
+  return { errors, warnings, type: 'task', path: filePath };
+}
+
+function validateAdrFrontmatter(meta, filePath) {
+  const errors = [];
+  const warnings = [];
+
+  // Required fields
+  if (!meta.id) errors.push('Missing required field: id');
+  if (!meta.title) errors.push('Missing required field: title');
+  if (!meta.status) errors.push('Missing required field: status');
+  if (!meta.deciders || !Array.isArray(meta.deciders) || meta.deciders.length === 0) {
+    errors.push('Missing required field: deciders (must be non-empty array)');
+  }
+  if (!meta.history || !Array.isArray(meta.history) || meta.history.length === 0) {
+    errors.push('Missing required field: history (must be non-empty array)');
+  }
+
+  // Status validation
+  if (meta.status && !ADR_STATUSES.includes(meta.status)) {
+    errors.push(`Invalid status: "${meta.status}". Must be one of: ${ADR_STATUSES.join(', ')}`);
+  }
+
+  // ID format validation
+  if (meta.id && !/^\d+$/.test(String(meta.id))) {
+    errors.push(`Invalid id format: "${meta.id}". Must be numeric (e.g., "0001")`);
+  }
+
+  // History validation
+  if (meta.history && Array.isArray(meta.history)) {
+    meta.history.forEach((entry, idx) => {
+      const prefix = `history[${idx}]`;
+
+      // Required fields in history
+      if (!entry.date) errors.push(`${prefix}: Missing required field: date`);
+      if (!entry.status) errors.push(`${prefix}: Missing required field: status`);
+      if (!entry.who) errors.push(`${prefix}: Missing required field: who`);
+
+      // Date format
+      if (entry.date && !DATE_REGEX.test(entry.date)) {
+        errors.push(`${prefix}: Invalid date format: "${entry.date}". Must be YYYY-MM-DD`);
+      }
+
+      // Status in history
+      if (entry.status && !ADR_STATUSES.includes(entry.status)) {
+        errors.push(`${prefix}: Invalid status: "${entry.status}". Must be one of: ${ADR_STATUSES.join(', ')}`);
+      }
+
+      // Who validation - just check it's a non-empty string
+      if (entry.who && typeof entry.who !== 'string') {
+        errors.push(`${prefix}: "who" must be a string`);
+      }
+
+      // Conditional: by required for superseded
+      if (entry.status === 'superseded' && !entry.by) {
+        errors.push(`${prefix}: Missing required field "by" for status "superseded"`);
+      }
+    });
+  }
+
+  // Optional array fields validation
+  if (meta.related_tasks && !Array.isArray(meta.related_tasks)) {
+    errors.push('related_tasks must be an array');
+  }
+  if (meta.tags && !Array.isArray(meta.tags)) {
+    errors.push('tags must be an array');
+  }
+  if (meta.links && !Array.isArray(meta.links)) {
+    errors.push('links must be an array');
+  }
+
+  return { errors, warnings, type: 'adr', path: filePath };
+}
+
+function validateNoteFrontmatter(meta, filePath) {
+  const errors = [];
+  const warnings = [];
+
+  // Required fields
+  if (!meta.title) errors.push('Missing required field: title');
+  if (!meta.type) errors.push('Missing required field: type');
+  if (!meta.status) errors.push('Missing required field: status');
+  if (!meta.history || !Array.isArray(meta.history) || meta.history.length === 0) {
+    errors.push('Missing required field: history (must be non-empty array)');
+  }
+
+  // Type validation
+  if (meta.type && !NOTE_TYPES.includes(meta.type)) {
+    errors.push(`Invalid type: "${meta.type}". Must be one of: ${NOTE_TYPES.join(', ')}`);
+  }
+
+  // Status validation
+  if (meta.status && !NOTE_STATUSES.includes(meta.status)) {
+    errors.push(`Invalid status: "${meta.status}". Must be one of: ${NOTE_STATUSES.join(', ')}`);
+  }
+
+  // Check type matches filename prefix
+  const filename = filePath.split('/').pop();
+  const prefixMap = { 'Q-': 'question', 'I-': 'idea', 'R-': 'research', 'S-': 'synthesis', 'G-': 'generation' };
+  for (const [prefix, expectedType] of Object.entries(prefixMap)) {
+    if (filename.startsWith(prefix) && meta.type && meta.type !== expectedType) {
+      errors.push(`Type mismatch: file prefix "${prefix}" expects type "${expectedType}" but found "${meta.type}"`);
+    }
+  }
+
+  // History validation
+  if (meta.history && Array.isArray(meta.history)) {
+    meta.history.forEach((entry, idx) => {
+      const prefix = `history[${idx}]`;
+
+      // Required fields in history
+      if (!entry.date) errors.push(`${prefix}: Missing required field: date`);
+      if (!entry.status) errors.push(`${prefix}: Missing required field: status`);
+      if (!entry.who) errors.push(`${prefix}: Missing required field: who`);
+
+      // Date format
+      if (entry.date && !DATE_REGEX.test(entry.date)) {
+        errors.push(`${prefix}: Invalid date format: "${entry.date}". Must be YYYY-MM-DD`);
+      }
+
+      // Status in history
+      if (entry.status && !NOTE_STATUSES.includes(entry.status)) {
+        errors.push(`${prefix}: Invalid status: "${entry.status}". Must be one of: ${NOTE_STATUSES.join(', ')}`);
+      }
+
+      // Who validation - just check it's a non-empty string
+      if (entry.who && typeof entry.who !== 'string') {
+        errors.push(`${prefix}: "who" must be a string`);
+      }
+
+      // Conditional: by required for superseded
+      if (entry.status === 'superseded' && !entry.by) {
+        errors.push(`${prefix}: Missing required field "by" for status "superseded"`);
+      }
+
+      // spawned_from and spawns should be arrays if present
+      if (entry.spawned_from && !Array.isArray(entry.spawned_from)) {
+        warnings.push(`${prefix}: "spawned_from" should be an array`);
+      }
+      if (entry.spawns && !Array.isArray(entry.spawns)) {
+        warnings.push(`${prefix}: "spawns" should be an array`);
+      }
+    });
+  }
+
+  // Warn about deprecated top-level spawned_from/spawns
+  if (meta.spawned_from) {
+    warnings.push('Top-level "spawned_from" is deprecated. Move to history entry with spawned_from array.');
+  }
+  if (meta.spawns) {
+    warnings.push('Top-level "spawns" is deprecated. Move to history entry with spawns array.');
+  }
+
+  // Optional array fields validation
+  if (meta.tags && !Array.isArray(meta.tags)) {
+    errors.push('tags must be an array');
+  }
+  if (meta.links && !Array.isArray(meta.links)) {
+    errors.push('links must be an array');
+  }
+
+  return { errors, warnings, type: 'note', path: filePath };
+}
+
+function detectContentType(filePath) {
+  if (filePath.includes('/1-tasks/')) {
+    if (filePath.includes('/notes/')) {
+      return 'note';
+    }
+    return 'task';
+  }
+  if (filePath.includes('/2-adrs/')) {
+    return 'adr';
+  }
+  return null;
+}
+
+function validateFile(filePath) {
+  const contentType = detectContentType(filePath);
+  if (!contentType) {
+    return { errors: [`Cannot determine content type for: ${filePath}`], warnings: [], type: 'unknown', path: filePath };
+  }
+
+  try {
+    const content = readFileSync(filePath, 'utf8');
+    const { data: meta } = matter(content);
+
+    if (!meta || Object.keys(meta).length === 0) {
+      return { errors: ['No frontmatter found'], warnings: [], type: contentType, path: filePath };
+    }
+
+    switch (contentType) {
+      case 'task':
+        return validateTaskFrontmatter(meta, filePath);
+      case 'adr':
+        return validateAdrFrontmatter(meta, filePath);
+      case 'note':
+        return validateNoteFrontmatter(meta, filePath);
+      default:
+        return { errors: [`Unknown content type: ${contentType}`], warnings: [], type: contentType, path: filePath };
+    }
+  } catch (e) {
+    return { errors: [`Failed to parse file: ${e.message}`], warnings: [], type: contentType, path: filePath };
+  }
+}
+
+function validateAllContent(loreDir) {
+  const results = [];
+
+  // Validate tasks
+  const tasksBase = join(loreDir, '1-tasks');
+  for (const subdir of ['active', 'blocked', 'archive', 'backlog']) {
+    const subdirPath = join(tasksBase, subdir);
+    if (!existsSync(subdirPath)) continue;
+
+    const items = readdirSync(subdirPath);
+    for (const item of items) {
+      if (item.startsWith('_')) continue;
+
+      const itemPath = join(subdirPath, item);
+      const stat = statSync(itemPath);
+
+      if (stat.isFile() && item.endsWith('.md')) {
+        results.push(validateFile(itemPath));
+      } else if (stat.isDirectory()) {
+        // Validate task README
+        const readme = join(itemPath, 'README.md');
+        if (existsSync(readme)) {
+          results.push(validateFile(readme));
+        }
+
+        // Validate notes
+        const notesDir = join(itemPath, 'notes');
+        if (existsSync(notesDir)) {
+          const noteFiles = globSync('**/*.md', { cwd: notesDir });
+          for (const noteFile of noteFiles) {
+            const notePath = join(notesDir, noteFile);
+            results.push(validateFile(notePath));
+          }
+        }
+      }
+    }
+  }
+
+  // Validate ADRs
+  const adrDir = join(loreDir, '2-adrs');
+  if (existsSync(adrDir)) {
+    const adrFiles = globSync('*.md', { cwd: adrDir });
+    for (const file of adrFiles) {
+      if (file.startsWith('_')) continue;
+      results.push(validateFile(join(adrDir, file)));
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // MCP Server Setup
 // ============================================================================
 
@@ -839,6 +1200,92 @@ server.registerTool(
       ];
 
       return { content: [{ type: 'text', text: lines.join('\n') }] };
+    } catch (e) {
+      return { content: [{ type: 'text', text: `Error: ${e.message}` }] };
+    }
+  }
+);
+
+// Tool: lore-validate
+server.registerTool(
+  'lore-validate',
+  {
+    title: 'Validate Frontmatter',
+    description: 'Validate frontmatter in tasks, ADRs, and notes. Can validate a single file or all content.',
+    inputSchema: {
+      file_path: z.string().optional().describe('Optional: path to a specific file to validate. If not provided, validates all content.'),
+    },
+  },
+  async ({ file_path }) => {
+    try {
+      const loreDir = getLoreDir();
+
+      if (!existsSync(loreDir)) {
+        return { content: [{ type: 'text', text: `Error: lore/ directory not found at ${loreDir}` }] };
+      }
+
+      let results;
+      if (file_path) {
+        // Validate single file
+        const fullPath = file_path.startsWith('/') ? file_path : join(getProjectDir(), file_path);
+        if (!existsSync(fullPath)) {
+          return { content: [{ type: 'text', text: `Error: File not found: ${fullPath}` }] };
+        }
+        results = [validateFile(fullPath)];
+      } else {
+        // Validate all content
+        results = validateAllContent(loreDir);
+      }
+
+      // Format results
+      const lines = [];
+      let totalErrors = 0;
+      let totalWarnings = 0;
+      const filesWithErrors = [];
+      const filesWithWarnings = [];
+
+      for (const result of results) {
+        if (result.errors.length > 0 || result.warnings.length > 0) {
+          const relativePath = relative(getProjectDir(), result.path);
+
+          if (result.errors.length > 0) {
+            filesWithErrors.push(relativePath);
+            totalErrors += result.errors.length;
+          }
+          if (result.warnings.length > 0) {
+            filesWithWarnings.push(relativePath);
+            totalWarnings += result.warnings.length;
+          }
+
+          lines.push(`\n## ${relativePath} (${result.type})`);
+
+          if (result.errors.length > 0) {
+            lines.push('\n**Errors:**');
+            for (const err of result.errors) {
+              lines.push(`- ❌ ${err}`);
+            }
+          }
+
+          if (result.warnings.length > 0) {
+            lines.push('\n**Warnings:**');
+            for (const warn of result.warnings) {
+              lines.push(`- ⚠️ ${warn}`);
+            }
+          }
+        }
+      }
+
+      // Summary
+      const summaryLines = ['# Validation Results\n'];
+      summaryLines.push(`**Files checked:** ${results.length}`);
+      summaryLines.push(`**Errors:** ${totalErrors} in ${filesWithErrors.length} files`);
+      summaryLines.push(`**Warnings:** ${totalWarnings} in ${filesWithWarnings.length} files`);
+
+      if (totalErrors === 0 && totalWarnings === 0) {
+        summaryLines.push('\n✅ All files valid!');
+      }
+
+      return { content: [{ type: 'text', text: summaryLines.join('\n') + lines.join('\n') }] };
     } catch (e) {
       return { content: [{ type: 'text', text: `Error: ${e.message}` }] };
     }
