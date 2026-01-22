@@ -10,7 +10,7 @@
   "mcpServers": {
     "lore": {
       "command": "npx",
-      "args": ["-y", "@maledorak/lore-mcp@latest"]
+      "args": ["-y", "lore-mcp@latest"]
     }
   }
 }
