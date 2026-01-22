@@ -6,13 +6,13 @@ Claude Code plugin for managing `lore/` directory - tracking tasks, ADRs, wiki, 
 
 | Tool | Description |
 |------|-------------|
-| `lore-set-user` | Set current user from team.yaml |
-| `lore-set-task` | Set current task by ID (creates symlink) |
-| `lore-show-session` | Show current session state (user and task) |
-| `lore-list-users` | List available users from team.yaml |
-| `lore-clear-task` | Clear current task symlink |
-| `lore-generate-index` | Regenerate lore/README.md and next-tasks.md |
-| `lore-validate` | Validate frontmatter in tasks, ADRs, and notes |
+| `lore_set-user` | Set current user from team.yaml |
+| `lore_set-task` | Set current task by ID (creates symlink) |
+| `lore_show-session` | Show current session state (user and task) |
+| `lore_list-users` | List available users from team.yaml |
+| `lore_clear-task` | Clear current task symlink |
+| `lore_generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore_validate` | Validate frontmatter in tasks, ADRs, and notes |
 
 ## Environment Variables
 

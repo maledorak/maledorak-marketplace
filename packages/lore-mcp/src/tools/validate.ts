@@ -232,7 +232,7 @@ function validateAllContent(loreDir: string): ValidationResult[] {
 
 export function registerValidateTools(server: McpServer, getLoreDir: () => string, getProjectDir: () => string): void {
   server.registerTool(
-    'lore-validate',
+    'lore_validate',
     {
       title: 'Validate Frontmatter',
       description: 'Validate frontmatter in tasks, ADRs, and notes. Can validate a single file or all content.',

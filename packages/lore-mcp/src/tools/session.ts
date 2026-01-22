@@ -144,7 +144,7 @@ export function registerSessionTools(
 ): void {
   // Tool: lore-set-user
   server.registerTool(
-    'lore-set-user',
+    'lore_set-user',
     {
       title: 'Set User',
       description: 'Set current user from team.yaml',
@@ -183,7 +183,7 @@ export function registerSessionTools(
 
   // Tool: lore-set-task
   server.registerTool(
-    'lore-set-task',
+    'lore_set-task',
     {
       title: 'Set Task',
       description: 'Set current task by ID (creates symlink to task file)',
@@ -237,7 +237,7 @@ export function registerSessionTools(
 
   // Tool: lore-show-session
   server.registerTool(
-    'lore-show-session',
+    'lore_show-session',
     {
       title: 'Show Session',
       description: 'Show current session state (user and task)',
@@ -305,7 +305,7 @@ export function registerSessionTools(
 
   // Tool: lore-list-users
   server.registerTool(
-    'lore-list-users',
+    'lore_list-users',
     {
       title: 'List Users',
       description: 'List available users from team.yaml',
@@ -337,7 +337,7 @@ export function registerSessionTools(
 
   // Tool: lore-clear-task
   server.registerTool(
-    'lore-clear-task',
+    'lore_clear-task',
     {
       title: 'Clear Task',
       description: 'Clear current task symlink',
