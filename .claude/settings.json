@@ -7,6 +7,7 @@
     "allow": [
       "mcp__Ref",
       "mcp__context7",
+      "mcp__plugin_lore-framework_lore-framework",
       "WebSearch",
       "WebFetch",
       "Bash(cat:*)",
@@ -75,6 +76,9 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "lore-framework@maledorak-marketplace": true
+  },
   "extraKnownMarketplaces": {
     "maledorak-marketplace": {
       "source": {
@@ -82,8 +86,5 @@
         "repo": "maledorak/maledorak-marketplace"
       }
     }
-  },
-  "enabledPlugins": {
-    "lore-framework@maledorak-marketplace": true
   }
 }
