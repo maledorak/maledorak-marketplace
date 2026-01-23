@@ -39,9 +39,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/maledorak/maledorak-private-marketplace"
+    "url": "https://github.com/maledorak/maledorak-marketplace"
   },
-  "homepage": "https://github.com/maledorak/maledorak-private-marketplace/tree/main/packages/lore-mcp",
+  "homepage": "https://github.com/maledorak/maledorak-marketplace/tree/main/packages/lore-mcp",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",
     "email": "mariusz@korzekwa.dev"

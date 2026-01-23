@@ -63,7 +63,7 @@ lore/
 
 ## Documentation
 
-See full documentation: [Lore Framework Plugin](https://github.com/maledorak/maledorak-private-marketplace/tree/main/plugins/lore-framework)
+See full documentation: [Lore Framework Plugin](https://github.com/maledorak/maledorak-marketplace/tree/main/plugins/lore-framework)
 
 ## License
 

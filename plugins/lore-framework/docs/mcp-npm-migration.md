@@ -1,23 +1,23 @@
 # Lore MCP npm Migration Report
 
-> Research na temat migracji lore MCP server do npm public package.
+> Research on migrating lore MCP server to npm public package.
 
 ## Problem
 
-**Claude Code web nie ładuje lokalnych serwerów MCP** zdefiniowanych w `.mcp.json`.
+**Claude Code web does not load local MCP servers** defined in `.mcp.json`.
 
-### Obserwacje
+### Observations
 
-| Element | Działa na web? |
-|---------|----------------|
-| Skills (`/lore`, `/lore-git`) | ✅ Tak |
-| MCP tools (`lore-set-task`, etc.) | ❌ Nie |
-| Bash scripts (workaround) | ✅ Tak |
-| Context7 MCP (npx) | ✅ Tak |
+| Element | Works on web? |
+|---------|---------------|
+| Skills (`/lore`, `/lore-git`) | ✅ Yes |
+| MCP tools (`lore-set-task`, etc.) | ❌ No |
+| Bash scripts (workaround) | ✅ Yes |
+| Context7 MCP (npx) | ✅ Yes |
 
-### Dowód
+### Proof
 
-Konfiguracja w `.mcp.json`:
+Configuration in `.mcp.json`:
 ```json
 {
   "mcpServers": {
@@ -33,44 +33,44 @@ Konfiguracja w `.mcp.json`:
 }
 ```
 
-- `context7` (npx + npm package) → **działa**
-- `lore` (node + lokalny plik) → **nie działa**
+- `context7` (npx + npm package) → **works**
+- `lore` (node + local file) → **does not work**
 
-### Weryfikacja serwera
+### Server Verification
 
-Serwer lore MCP sam w sobie jest poprawny:
-- Kod bez błędów
-- Zależności zainstalowane (`.claude/node_modules/`)
-- Startuje poprawnie przez `node .claude/servers/lore-mcp.js`
+The lore MCP server itself is correct:
+- Code has no errors
+- Dependencies installed (`.claude/node_modules/`)
+- Starts correctly via `node .claude/servers/lore-mcp.js`
 
-Problem leży w Claude Code web - nie spawnuje procesów dla lokalnych serwerów MCP.
+The problem lies in Claude Code web - it does not spawn processes for local MCP servers.
 
-## Rozwiązanie: npm public
+## Solution: npm public
 
-### Decyzja
+### Decision
 
-Opublikować `@maledorak/lore-mcp` na **npm public** (npmjs.com).
+Publish `@maledorak/lore-mcp` on **npm public** (npmjs.com).
 
-### Porównanie rozważanych opcji
+### Comparison of Considered Options
 
-| Kryterium | npm public | GitHub Packages public | GitHub Packages private |
+| Criterion | npm public | GitHub Packages public | GitHub Packages private |
 |-----------|------------|----------------------|------------------------|
-| Auth w .mcp.json | ❌ Nie trzeba | ❌ Nie trzeba | ✅ Trzeba token |
-| Auth do publish | npm token | GitHub token | GitHub token |
-| Env bug w Claude | N/A | N/A | ⚠️ Ryzyko |
-| Kod widoczny | ✅ Tak | ✅ Tak | ❌ Nie |
-| Setup na nowej maszynie | Zero | `.npmrc` | `.npmrc` + token |
+| Auth in .mcp.json | ❌ Not required | ❌ Not required | ✅ Token required |
+| Auth for publish | npm token | GitHub token | GitHub token |
+| Env bug in Claude | N/A | N/A | ⚠️ Risk |
+| Code visible | ✅ Yes | ✅ Yes | ❌ No |
+| Setup on new machine | Zero | `.npmrc` | `.npmrc` + token |
 
-### Dlaczego npm public
+### Why npm public
 
-1. **Zero konfiguracji** - działa out of the box
-2. **Brak ryzyka** - znany bug z env vars w Claude Code ([Issue #1254](https://github.com/anthropics/claude-code/issues/1254))
-3. **Bezpieczeństwo** - kod lore-mcp nie zawiera secretów, to tylko tooling
-4. **Prostota** - najprostszy setup na nowych projektach
+1. **Zero configuration** - works out of the box
+2. **No risk** - known bug with env vars in Claude Code ([Issue #1254](https://github.com/anthropics/claude-code/issues/1254))
+3. **Security** - lore-mcp code contains no secrets, it's just tooling
+4. **Simplicity** - simplest setup on new projects
 
-### Docelowa konfiguracja
+### Target Configuration
 
-`.mcp.json` w dowolnym projekcie:
+`.mcp.json` in any project:
 ```json
 {
   "mcpServers": {
@@ -82,9 +82,9 @@ Opublikować `@maledorak/lore-mcp` na **npm public** (npmjs.com).
 }
 ```
 
-## Implementacja
+## Implementation
 
-### Struktura pakietu npm
+### npm Package Structure
 
 ```
 packages/lore-mcp/
@@ -96,16 +96,16 @@ packages/lore-mcp/
 
 ### GitHub Workflow
 
-Automatyczna publikacja przez `.github/workflows/publish-lore-mcp.yml`:
-- Trigger: tag `lore-mcp@*` lub manual dispatch
-- Wymaga: `NPM_TOKEN` secret (scoped do `@maledorak/lore-mcp`)
+Automatic publishing via `.github/workflows/publish-lore-mcp.yml`:
+- Trigger: tag `lore-mcp@*` or manual dispatch
+- Requires: `NPM_TOKEN` secret (scoped to `@maledorak/lore-mcp`)
 
-> **Uwaga**: npm Trusted Publishing (OIDC) z `--provenance` wymaga publicznego repozytorium.
-> Ponieważ `maledorak-private-marketplace` jest prywatne, używamy token-based auth.
+> **Note**: npm Trusted Publishing (OIDC) with `--provenance` requires a public repository.
+> The `maledorak-marketplace` repository is now public, but we still use token-based auth.
 
-### Zmiany w pluginie
+### Plugin Changes
 
-Plugin v1.0.6+ używa npx zamiast bundlowanego serwera:
+Plugin v1.0.6+ uses npx instead of bundled server:
 
 ```json
 {
@@ -118,13 +118,13 @@ Plugin v1.0.6+ używa npx zamiast bundlowanego serwera:
 }
 ```
 
-## Powiązane issues
+## Related Issues
 
 - [Claude Code #18088](https://github.com/anthropics/claude-code/issues/18088) - Web plugin support
 - [Claude Code #1254](https://github.com/anthropics/claude-code/issues/1254) - Env vars not passed to MCP
 - [Claude Code #10955](https://github.com/anthropics/claude-code/issues/10955) - MCP env vars not loading
 
-## Źródła
+## Sources
 
 - [GitHub Docs - npm registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
 - [Claude Code MCP docs](https://code.claude.com/docs/en/mcp)

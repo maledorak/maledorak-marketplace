@@ -47,7 +47,7 @@ Create `.mcp.json` in project root:
 mkdir -p .claude/skills
 
 # Clone and copy
-git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
+git clone --depth 1 https://github.com/maledorak/maledorak-marketplace /tmp/lore-tmp
 cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore .claude/skills/
 cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore-git .claude/skills/
 rm -rf /tmp/lore-tmp
@@ -57,7 +57,7 @@ Add note to copied files (for future cleanup):
 
 ```markdown
 > **TEMPORARY LOCAL COPY** - Remove when Claude Code web supports plugins
-> Source: `lore-framework@maledorak-private-marketplace` plugin
+> Source: `lore-framework@maledorak-marketplace` plugin
 > Issue: https://github.com/anthropics/claude-code/issues/18088
 ```
 
@@ -67,7 +67,7 @@ Add note to copied files (for future cleanup):
 mkdir -p .claude/agents
 
 # From the same clone, or fresh:
-git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
+git clone --depth 1 https://github.com/maledorak/maledorak-marketplace /tmp/lore-tmp
 cp /tmp/lore-tmp/plugins/lore-framework/agents/lore-framework-fetch-source.md .claude/agents/
 rm -rf /tmp/lore-tmp
 ```
@@ -85,7 +85,7 @@ mkdir -p .claude/hooks
 ```bash
 #!/bin/bash
 # TEMPORARY LOCAL COPY - Remove when Claude Code web supports plugins
-# Source: lore-framework@maledorak-private-marketplace plugin
+# Source: lore-framework@maledorak-marketplace plugin
 # Issue: https://github.com/anthropics/claude-code/issues/18088
 
 set -e
@@ -111,7 +111,7 @@ npx -y lore-framework-mcp@latest generate-index --next-only --quiet 2>/dev/null 
 ```bash
 #!/bin/bash
 # TEMPORARY LOCAL COPY - Remove when Claude Code web supports plugins
-# Source: lore-framework@maledorak-private-marketplace plugin
+# Source: lore-framework@maledorak-marketplace plugin
 # Issue: https://github.com/anthropics/claude-code/issues/18088
 
 set -e

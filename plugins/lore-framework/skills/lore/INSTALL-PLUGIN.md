@@ -15,10 +15,10 @@
 // .claude/settings.json
 {
   "extraKnownMarketplaces": {
-    "maledorak-private-marketplace": {
+    "maledorak-marketplace": {
       "source": {
         "source": "github",
-        "repo": "maledorak/maledorak-private-marketplace"
+        "repo": "maledorak/maledorak-marketplace"
       }
     }
   }
@@ -31,7 +31,7 @@
 // .claude/settings.json
 {
   "enabledPlugins": {
-    "lore-framework@maledorak-private-marketplace": true
+    "lore-framework@maledorak-marketplace": true
   }
 }
 ```

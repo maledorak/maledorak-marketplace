@@ -27,7 +27,7 @@ Claude will read the instructions and copy all files manually.
 ### Option 2: Plugin (CLI only)
 
 ```shell
-/plugin install lore-framework@maledorak-private-marketplace
+/plugin install lore-framework@maledorak-marketplace
 ```
 
 > **Note:** Plugins only work in Claude Code CLI for now. For Desktop/Web, use Option 1.

@@ -76,6 +76,6 @@
     ]
   },
   "enabledPlugins": {
-    "lore@maledorak-private-marketplace": false
+    "lore-framework@maledorak-marketplace": false
   }
 }
