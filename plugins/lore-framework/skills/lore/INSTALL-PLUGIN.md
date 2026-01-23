@@ -70,7 +70,7 @@
 |-----------|-------------|
 | **Skills** | `/lore`, `/lore-git` |
 | **MCP Tools** | `lore-framework_set-user`, `lore-framework_set-task`, `lore-framework_show-session`, `lore-framework_list-users`, `lore-framework_clear-task`, `lore-framework_generate-index`, `lore-framework_validate` |
-| **Agents** | `lore-fetch-source` (web archiving) |
+| **Agents** | `lore-framework-fetch-source` (web archiving) |
 | **Hooks** | SessionStart (auto user/index), PostToolUse (auto-regenerate index) |
 
 ## Verification

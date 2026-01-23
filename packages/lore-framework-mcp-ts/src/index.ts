@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 /**
- * MCP Server for Lore Framework
+ * Lore Framework MCP Server and CLI
  *
- * Provides tools for managing lore/ directory:
+ * CLI Usage:
+ *   npx lore-framework-mcp <command> [options]
+ *
+ * MCP Server:
+ *   Run without arguments to start MCP server (stdio transport)
+ *
+ * MCP Tools:
  * - lore-framework_set-user: Set current user from team.yaml
  * - lore-framework_set-task: Set current task symlink
  * - lore-framework_show-session: Show current session state
@@ -19,15 +25,16 @@ import { registerSessionTools } from './tools/session.js';
 import { registerIndexTools } from './tools/index-generator.js';
 import { registerValidateTools } from './tools/validate.js';
 import { logger } from './utils/logger.js';
+import { runCli } from './cli.js';
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-const VERSION = '1.2.0';
+const VERSION = '1.2.1';
 
 function getProjectDir(): string {
-  return process.cwd();
+  return process.env.CLAUDE_PROJECT_DIR || process.cwd();
 }
 
 function getLoreDir(): string {
@@ -42,11 +49,11 @@ function getSessionDir(): string {
 // Server Setup
 // ============================================================================
 
-async function main(): Promise<void> {
-  logger.info('Starting lore-mcp server', { version: VERSION });
+async function startServer(): Promise<void> {
+  logger.info('Starting lore-framework-mcp server', { version: VERSION });
 
   const server = new McpServer({
-    name: 'lore',
+    name: 'lore-framework',
     version: VERSION,
   });
 
@@ -62,7 +69,19 @@ async function main(): Promise<void> {
   logger.info('Server connected', { transport: 'stdio' });
 }
 
-main().catch((error) => {
-  logger.error('Fatal error', { error: error instanceof Error ? error.message : String(error) });
-  process.exit(1);
-});
+// ============================================================================
+// Main Entry Point
+// ============================================================================
+
+// Detect CLI mode: any args beyond node and script path
+if (process.argv.length > 2) {
+  // CLI mode
+  const exitCode = runCli(process.argv);
+  process.exit(exitCode);
+} else {
+  // MCP server mode
+  startServer().catch((error) => {
+    logger.error('Fatal error', { error: error instanceof Error ? error.message : String(error) });
+    process.exit(1);
+  });
+}

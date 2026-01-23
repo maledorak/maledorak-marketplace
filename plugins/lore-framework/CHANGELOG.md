@@ -99,5 +99,5 @@ See [MCP npm Migration Report](docs/mcp-npm-migration.md) for background.
   - `1-tasks/` - Task management (active, blocked, archive, backlog)
   - `2-adrs/` - Architecture Decision Records
   - `3-wiki/` - Living documentation
-- Agent: `lore-fetch-source` - Fetch web sources and save to current task's `sources/` directory
+- Agent: `lore-framework-fetch-source` - Fetch web sources and save to current task's `sources/` directory
 - Session file: `current-task.json` - Task metadata (id + path) for agents

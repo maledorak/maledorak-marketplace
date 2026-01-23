@@ -68,7 +68,7 @@ mkdir -p .claude/agents
 
 # From the same clone, or fresh:
 git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
-cp /tmp/lore-tmp/plugins/lore-framework/agents/lore-fetch-source.md .claude/agents/
+cp /tmp/lore-tmp/plugins/lore-framework/agents/lore-framework-fetch-source.md .claude/agents/
 rm -rf /tmp/lore-tmp
 ```
 
@@ -313,7 +313,7 @@ project/
 │   │   ├── lore/                  # Lore skill
 │   │   └── lore-git/              # Git commit skill
 │   └── agents/
-│       └── lore-fetch-source.md   # Web archiving agent
+│       └── lore-framework-fetch-source.md   # Web archiving agent
 └── lore/
     ├── CLAUDE.md
     ├── 0-session/

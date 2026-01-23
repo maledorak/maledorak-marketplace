@@ -50,6 +50,6 @@ lore/
 
 | Agent | Description |
 |-------|-------------|
-| `lore-fetch-source` | Fetch web sources and save to current task's `sources/` directory |
+| `lore-framework-fetch-source` | Fetch web sources and save to current task's `sources/` directory |
 
 See `skills/` and `agents/` directories for full documentation.
