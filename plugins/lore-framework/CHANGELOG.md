@@ -1,9 +1,32 @@
 # Changelog
 
-All notable changes to the Lore plugin will be documented in this file.
+All notable changes to the Lore Framework plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.1] - 2026-01-23
+
+### Changed
+
+- **BREAKING:** Renamed to "Lore Framework" branding
+  - Plugin: `lore` → `lore-framework`
+  - npm package: `lore-mcp` → `lore-framework-mcp`
+  - MCP server key: `lore` → `lore-framework`
+  - MCP tool prefix: `lore-*` → `lore-framework_*`
+  - Directory: `plugins/lore` → `plugins/lore-framework`
+- Added [BETA] labels with version compatibility notes
+- Refactored MCP server to modular TypeScript architecture
+  - Separate tool modules: session, index-generator, validate
+  - Zod schemas for frontmatter validation
+  - Structured JSON logging to stderr
+  - Error formatting with actionable hints
+
+### Added
+
+- `lore-framework_validate` MCP tool - validates frontmatter in tasks, ADRs, and notes
+- Frontmatter validation schemas for tasks, ADRs, and notes
+- History entry validation with `who`, `reason`, `spawned_from`, `spawns` fields
 
 ## [1.0.6] - 2026-01-19
 
