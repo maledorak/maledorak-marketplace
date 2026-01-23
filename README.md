@@ -1,6 +1,6 @@
 # Maledorak Claude Code Plugins Marketplace
 
-Public marketplace for Claude Code plugins maintained by Maledorak.
+Personal marketplace for Claude Code plugins maintained by Maledorak.
 
 ## Available Plugins
 

@@ -1,3 +1,3 @@
-# Maledorak Private Claude Code Plugins Marketplace
+# Maledorak Personal Claude Code Plugins Marketplace
 
-This repository contains a private marketplace for Claude Code plugins maintained by Maledorak.
+This repository contains a personal marketplace for Claude Code plugins maintained by Maledorak.

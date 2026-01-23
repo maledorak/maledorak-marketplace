@@ -26,17 +26,18 @@
       }
     },
     {
-      "name": "lore",
-      "source": "./plugins/lore",
-      "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
-      "version": "1.0.6",
+      "name": "lore-framework",
+      "source": "./plugins/lore-framework",
+      "description": "[BETA] Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
+      "version": "1.2.1",
       "keywords": [
         "tasks",
         "adr",
         "wiki",
         "session",
         "lore",
-        "project-management"
+        "project-management",
+        "lore-framework"
       ],
       "author": {
         "name": "Mariusz (Maledorak) Korzekwa",
