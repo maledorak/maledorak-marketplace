@@ -9,7 +9,7 @@ import sys
 from .server import mcp, run_server
 from .cli import run_cli
 
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 
 
 def main():
