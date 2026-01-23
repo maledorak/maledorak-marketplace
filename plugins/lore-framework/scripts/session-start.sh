@@ -4,6 +4,7 @@
 # Runs on: startup, resume, clear
 #
 # Automatically sets up:
+# - .gitignore entries for lore session files
 # - current-user.md from LORE_SESSION_CURRENT_USER env var
 # - next-tasks.md (regenerated fresh each session)
 #
@@ -25,6 +26,27 @@ if [ ! -d "$PROJECT_DIR/lore" ]; then
 fi
 
 cd "$PROJECT_DIR"
+
+# Ensure lore session files are gitignored
+GITIGNORE="$PROJECT_DIR/.gitignore"
+
+ensure_gitignore() {
+    local entry="$1"
+
+    # Create .gitignore if it doesn't exist
+    [ ! -f "$GITIGNORE" ] && touch "$GITIGNORE"
+
+    # Add entry if not already present
+    if ! grep -qxF "$entry" "$GITIGNORE" 2>/dev/null; then
+        echo "$entry" >> "$GITIGNORE"
+        echo "Added to .gitignore: $entry"
+    fi
+}
+
+ensure_gitignore "lore/0-session/current-user.md"
+ensure_gitignore "lore/0-session/current-task.md"
+ensure_gitignore "lore/0-session/current-task.json"
+ensure_gitignore "lore/0-session/next-tasks.md"
 
 # Set current user from env var if set
 if [ -n "$LORE_SESSION_CURRENT_USER" ]; then
