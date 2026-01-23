@@ -26,4 +26,4 @@ if [[ "$FILE_PATH" != *"/lore/1-tasks/"* ]] && [[ "$FILE_PATH" != *"/lore/2-adrs
 fi
 
 # Regenerate lore index
-node "$PLUGIN_ROOT/scripts/lore-generate-index.js" "$PROJECT_DIR" --quiet 2>/dev/null || true
+node "$PLUGIN_ROOT/scripts/lore-framework-generate-index.js" "$PROJECT_DIR" --quiet 2>/dev/null || true

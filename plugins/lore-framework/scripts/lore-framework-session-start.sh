@@ -35,8 +35,8 @@ fi
 
 # Set current user from env var if set
 if [ -n "$LORE_SESSION_CURRENT_USER" ]; then
-    node "$PLUGIN_ROOT/scripts/lore-set-session.js" --env --quiet --project "$PROJECT_DIR" 2>/dev/null || true
+    node "$PLUGIN_ROOT/scripts/lore-framework-set-session.js" --env --quiet --project "$PROJECT_DIR" 2>/dev/null || true
 fi
 
 # Regenerate next-tasks.md only
-node "$PLUGIN_ROOT/scripts/lore-generate-index.js" "$PROJECT_DIR" --next-only --quiet 2>/dev/null || true
+node "$PLUGIN_ROOT/scripts/lore-framework-generate-index.js" "$PROJECT_DIR" --next-only --quiet 2>/dev/null || true

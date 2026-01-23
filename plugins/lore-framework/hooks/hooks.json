@@ -1,5 +1,5 @@
 {
-  "description": "Lore hooks for session and index management",
+  "description": "Lore Framework hooks for session and index management",
   "hooks": {
     "SessionStart": [
       {
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-session-start.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-framework-session-start.sh"
           }
         ]
       }
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-on-file-change.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-framework-on-file-change.sh"
           }
         ]
       }

@@ -59,8 +59,8 @@ This plugin includes automatic hooks:
 ## Scripts (CLI)
 
 For manual CLI usage:
-- `scripts/lore-set-session.js` - Set current user and task
-- `scripts/lore-generate-index.js` - Generate lore directory index
+- `scripts/lore-framework-set-session.js` - Set current user and task
+- `scripts/lore-framework-generate-index.js` - Generate lore directory index
 
 ## Version
 
