@@ -75,7 +75,15 @@
       }
     ]
   },
+  "extraKnownMarketplaces": {
+    "maledorak-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "maledorak/maledorak-marketplace"
+      }
+    }
+  },
   "enabledPlugins": {
-    "lore-framework@maledorak-marketplace": false
+    "lore-framework@maledorak-marketplace": true
   }
 }
