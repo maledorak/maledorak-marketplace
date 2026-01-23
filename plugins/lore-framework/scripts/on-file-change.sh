@@ -27,4 +27,4 @@ fi
 cd "$PROJECT_DIR"
 
 # Regenerate lore index
-npx -y lore-framework-mcp@latest generate-index --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@1.2.4 generate-index --quiet 2>/dev/null || true

@@ -10,7 +10,7 @@
   "mcpServers": {
     "lore-framework": {
       "command": "npx",
-      "args": ["-y", "lore-framework-mcp@latest"]
+      "args": ["-y", "lore-framework-mcp@1.2.4"]
     }
   }
 }
