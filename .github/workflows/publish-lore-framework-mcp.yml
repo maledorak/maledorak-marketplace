@@ -11,12 +11,13 @@ on:
         required: false
         type: string
 
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
     defaults:
       run:
         working-directory: packages/lore-framework-mcp-ts
@@ -28,8 +29,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Check npm version
+        run: npm --version
 
       - name: Install dependencies
         run: npm install
@@ -38,10 +42,8 @@ jobs:
         if: ${{ github.event.inputs.version }}
         run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
 
-      - name: Publish to npm (OIDC)
-        run: npm publish --access public --provenance
-        env:
-          NPM_CONFIG_PROVENANCE: true
+      - name: Publish to npm
+        run: npm publish --access public
 
       - name: Get published version
         id: version
