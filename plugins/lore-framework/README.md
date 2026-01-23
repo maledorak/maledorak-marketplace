@@ -56,11 +56,16 @@ This plugin includes automatic hooks:
 - **SessionStart** - Installs pnpm dependencies, sets user from `LORE_SESSION_CURRENT_USER`, generates next-tasks.md
 - **PostToolUse** - Regenerates lore index when task/ADR files are edited
 
-## Scripts (CLI)
+## CLI
 
-For manual CLI usage:
-- `scripts/lore-framework-set-session.js` - Set current user and task
-- `scripts/lore-framework-generate-index.js` - Generate lore directory index
+For manual CLI usage via npx:
+```bash
+npx lore-framework-mcp set-user <id>       # Set user
+npx lore-framework-mcp set-user --env      # Set user from env var
+npx lore-framework-mcp set-task <id>       # Set task
+npx lore-framework-mcp show-session        # Show session state
+npx lore-framework-mcp generate-index      # Generate lore index
+```
 
 ## Version
 

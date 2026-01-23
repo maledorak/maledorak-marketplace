@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-framework-session-start.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/session-start.sh"
           }
         ]
       }
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lore-framework-on-file-change.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/on-file-change.sh"
           }
         ]
       }

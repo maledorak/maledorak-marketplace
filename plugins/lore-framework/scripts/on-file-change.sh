@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# PostToolUse hook for lore plugin.
+# PostToolUse hook for lore-framework plugin.
 # Runs on: Write, Edit
 #
 # Regenerates lore index when task or ADR files are modified.
@@ -8,7 +8,6 @@
 
 set -e
 
-PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT}"
 PROJECT_DIR="${CLAUDE_PROJECT_DIR}"
 
 # Check if lore/ directory exists in project
@@ -25,5 +24,7 @@ if [[ "$FILE_PATH" != *"/lore/1-tasks/"* ]] && [[ "$FILE_PATH" != *"/lore/2-adrs
     exit 0
 fi
 
+cd "$PROJECT_DIR"
+
 # Regenerate lore index
-node "$PLUGIN_ROOT/scripts/lore-framework-generate-index.js" "$PROJECT_DIR" --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@latest generate-index --quiet 2>/dev/null || true

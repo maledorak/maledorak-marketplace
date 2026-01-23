@@ -77,7 +77,7 @@ rm -rf /tmp/lore-tmp
 ### 4a. Create hook scripts
 
 ```bash
-mkdir -p .claude/hooks .claude/scripts
+mkdir -p .claude/hooks
 ```
 
 **`.claude/hooks/session-start.sh`:**
@@ -90,29 +90,23 @@ mkdir -p .claude/hooks .claude/scripts
 
 set -e
 
-SCRIPTS_DIR="$CLAUDE_PROJECT_DIR/.claude/scripts"
-
 # Check if lore/ directory exists
 if [ ! -d "$CLAUDE_PROJECT_DIR/lore" ]; then
     exit 0
 fi
 
-# Install dependencies if needed
-if [ ! -d "$CLAUDE_PROJECT_DIR/.claude/node_modules" ]; then
-    cd "$CLAUDE_PROJECT_DIR/.claude"
-    pnpm install --frozen-lockfile 2>/dev/null || pnpm install 2>/dev/null || npm install 2>/dev/null || true
-fi
+cd "$CLAUDE_PROJECT_DIR"
 
 # Set current user from env var
 if [ -n "$LORE_SESSION_CURRENT_USER" ]; then
-    node "$SCRIPTS_DIR/lore-set-session.js" --env --quiet --project "$CLAUDE_PROJECT_DIR" 2>/dev/null || true
+    npx -y lore-framework-mcp@latest set-user --env --quiet 2>/dev/null || true
 fi
 
 # Regenerate next-tasks.md
-node "$SCRIPTS_DIR/lore-generate-index.js" "$CLAUDE_PROJECT_DIR" --next-only --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@latest generate-index --next-only --quiet 2>/dev/null || true
 ```
 
-**`.claude/hooks/lore-on-file-change.sh`:**
+**`.claude/hooks/on-file-change.sh`:**
 
 ```bash
 #!/bin/bash
@@ -121,8 +115,6 @@ node "$SCRIPTS_DIR/lore-generate-index.js" "$CLAUDE_PROJECT_DIR" --next-only --q
 # Issue: https://github.com/anthropics/claude-code/issues/18088
 
 set -e
-
-SCRIPTS_DIR="$CLAUDE_PROJECT_DIR/.claude/scripts"
 
 # Check if lore/ directory exists
 if [ ! -d "$CLAUDE_PROJECT_DIR/lore" ]; then
@@ -137,47 +129,16 @@ if [[ "$FILE_PATH" != *"/lore/1-tasks/"* ]] && [[ "$FILE_PATH" != *"/lore/2-adrs
     exit 0
 fi
 
+cd "$CLAUDE_PROJECT_DIR"
+
 # Regenerate lore index
-node "$SCRIPTS_DIR/lore-generate-index.js" "$CLAUDE_PROJECT_DIR" --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@latest generate-index --quiet 2>/dev/null || true
 ```
 
 Make executable:
 
 ```bash
 chmod +x .claude/hooks/*.sh
-```
-
-### 4b. Copy scripts
-
-```bash
-git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
-cp /tmp/lore-tmp/plugins/lore-framework/scripts/lore-set-session.js .claude/scripts/
-cp /tmp/lore-tmp/plugins/lore-framework/scripts/lore-generate-index.js .claude/scripts/
-rm -rf /tmp/lore-tmp
-```
-
-### 4c. Create package.json
-
-**`.claude/package.json`:**
-
-```json
-{
-  "name": "lore-scripts",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "glob": "^13.0.0",
-    "gray-matter": "^4.0.3",
-    "yaml": "^2.8.2"
-  }
-}
-```
-
-Install dependencies:
-
-```bash
-cd .claude && pnpm install && cd ..
 ```
 
 ## Step 5: Configure Settings
@@ -211,7 +172,7 @@ cd .claude && pnpm install && cd ..
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/lore-on-file-change.sh"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/on-file-change.sh"
           }
         ]
       }
@@ -302,13 +263,9 @@ project/
 ├── .claude/
 │   ├── settings.json              # Permissions + hooks
 │   ├── settings.local.json        # User env (gitignored)
-│   ├── package.json               # Script dependencies
 │   ├── hooks/
 │   │   ├── session-start.sh       # SessionStart hook
-│   │   └── lore-on-file-change.sh # PostToolUse hook
-│   ├── scripts/
-│   │   ├── lore-set-session.js    # Session management
-│   │   └── lore-generate-index.js # Index generation
+│   │   └── on-file-change.sh # PostToolUse hook
 │   ├── skills/
 │   │   ├── lore/                  # Lore skill
 │   │   └── lore-git/              # Git commit skill
@@ -332,7 +289,6 @@ project/
 
 When Claude Code web supports plugins:
 
-1. Delete `.claude/hooks/`, `.claude/scripts/`, `.claude/agents/`, `.claude/skills/lore*`
-2. Delete `.claude/package.json` and `.claude/node_modules/`
-3. Remove hooks from `.claude/settings.json`
-4. Follow [INSTALL-PLUGIN.md](INSTALL-PLUGIN.md) instead
+1. Delete `.claude/hooks/`, `.claude/agents/`, `.claude/skills/lore*`
+2. Remove hooks from `.claude/settings.json`
+3. Follow [INSTALL-PLUGIN.md](INSTALL-PLUGIN.md) instead
