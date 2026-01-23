@@ -1,4 +1,6 @@
-# Lore Framework Installation
+# Lore Framework Installation [BETA]
+
+> **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
 Choose your installation method:
 

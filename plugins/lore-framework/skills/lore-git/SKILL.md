@@ -48,7 +48,7 @@ refactor(lore-0017): restructure directory layout
 
 ### Finding Current Task
 
-Check `lore/0-session/current-task.md` symlink to see active task, or use `lore-show-session` MCP tool.
+Check `lore/0-session/current-task.md` symlink to see active task, or use `lore-framework_show-session` MCP tool.
 
 ## Type Selection
 

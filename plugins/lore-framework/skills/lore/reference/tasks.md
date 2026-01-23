@@ -214,9 +214,9 @@ The `current-task.md` file is a symlink to the task currently being worked on.
 
 **Managing current task (MCP tools):**
 
-- Set current task: `lore-set-task` with task_id (e.g., "0042")
-- Clear current task: `lore-clear-task`
-- View current session: `lore-show-session`
+- Set current task: `lore-framework_set-task` with task_id (e.g., "0042")
+- Clear current task: `lore-framework_clear-task`
+- View current session: `lore-framework_show-session`
 
 **Behavior:**
 - Symlinks to `1-tasks/{status}/NNNN_*.../README.md` for directory tasks
@@ -225,7 +225,7 @@ The `current-task.md` file is a symlink to the task currently being worked on.
 
 **If `current-task.md` doesn't exist:**
 1. View available tasks in `lore/0-session/next-tasks.md`
-2. Pick a task: use `lore-set-task` MCP tool
+2. Pick a task: use `lore-framework_set-task` MCP tool
 3. Or create a new task first
 
 See [workflow.md](workflow.md) for task-gated development rules.
@@ -246,4 +246,4 @@ The `next-tasks.md` file lists actionable tasks sorted by priority.
 - Under 50 lines for minimal context usage
 
 **Generation:**
-Use `lore-generate-index` MCP tool to regenerate both README.md and next-tasks.md.
+Use `lore-framework_generate-index` MCP tool to regenerate both README.md and next-tasks.md.

@@ -19,8 +19,8 @@ How knowledge flows through the framework, from questions to implementation.
 Before writing/modifying code:
 1. Check `lore/0-session/current-user.md` exists (identifies who is working)
 2. Check `lore/0-session/current-task.md` exists (symlink to active task)
-3. If user missing: use `lore-set-user` MCP tool
-4. If task missing: use `lore-set-task` MCP tool
+3. If user missing: use `lore-framework_set-user` MCP tool
+4. If task missing: use `lore-framework_set-task` MCP tool
 5. If no task exists for this work, create one first
 6. Document decisions in task worklog
 

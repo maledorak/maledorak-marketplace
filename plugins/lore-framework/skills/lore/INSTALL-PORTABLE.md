@@ -1,4 +1,6 @@
-# Lore Framework Installation (Portable)
+# Lore Framework Installation (Portable) [BETA]
+
+> **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
 > **For Claude:** Don't run bash commands. Use `Read` to copy files from this plugin's repo,
 > `Write` to create them in the target project. Create configs manually. You are the installer.
@@ -31,9 +33,9 @@ Create `.mcp.json` in project root:
 ```json
 {
   "mcpServers": {
-    "lore": {
+    "lore-framework": {
       "command": "npx",
-      "args": ["-y", "@maledorak/lore-mcp@latest"]
+      "args": ["-y", "lore-framework-mcp@latest"]
     }
   }
 }
@@ -46,8 +48,8 @@ mkdir -p .claude/skills
 
 # Clone and copy
 git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
-cp -r /tmp/lore-tmp/plugins/lore/skills/lore .claude/skills/
-cp -r /tmp/lore-tmp/plugins/lore/skills/lore-git .claude/skills/
+cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore .claude/skills/
+cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore-git .claude/skills/
 rm -rf /tmp/lore-tmp
 ```
 
@@ -55,7 +57,7 @@ Add note to copied files (for future cleanup):
 
 ```markdown
 > **TEMPORARY LOCAL COPY** - Remove when Claude Code web supports plugins
-> Source: `lore@maledorak-private-marketplace` plugin
+> Source: `lore-framework@maledorak-private-marketplace` plugin
 > Issue: https://github.com/anthropics/claude-code/issues/18088
 ```
 
@@ -66,7 +68,7 @@ mkdir -p .claude/agents
 
 # From the same clone, or fresh:
 git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
-cp /tmp/lore-tmp/plugins/lore/agents/lore-fetch-source.md .claude/agents/
+cp /tmp/lore-tmp/plugins/lore-framework/agents/lore-fetch-source.md .claude/agents/
 rm -rf /tmp/lore-tmp
 ```
 
@@ -83,7 +85,7 @@ mkdir -p .claude/hooks .claude/scripts
 ```bash
 #!/bin/bash
 # TEMPORARY LOCAL COPY - Remove when Claude Code web supports plugins
-# Source: lore@maledorak-private-marketplace plugin
+# Source: lore-framework@maledorak-private-marketplace plugin
 # Issue: https://github.com/anthropics/claude-code/issues/18088
 
 set -e
@@ -115,7 +117,7 @@ node "$SCRIPTS_DIR/lore-generate-index.js" "$CLAUDE_PROJECT_DIR" --next-only --q
 ```bash
 #!/bin/bash
 # TEMPORARY LOCAL COPY - Remove when Claude Code web supports plugins
-# Source: lore@maledorak-private-marketplace plugin
+# Source: lore-framework@maledorak-private-marketplace plugin
 # Issue: https://github.com/anthropics/claude-code/issues/18088
 
 set -e
@@ -149,8 +151,8 @@ chmod +x .claude/hooks/*.sh
 
 ```bash
 git clone --depth 1 https://github.com/maledorak/maledorak-private-marketplace /tmp/lore-tmp
-cp /tmp/lore-tmp/plugins/lore/scripts/lore-set-session.js .claude/scripts/
-cp /tmp/lore-tmp/plugins/lore/scripts/lore-generate-index.js .claude/scripts/
+cp /tmp/lore-tmp/plugins/lore-framework/scripts/lore-set-session.js .claude/scripts/
+cp /tmp/lore-tmp/plugins/lore-framework/scripts/lore-generate-index.js .claude/scripts/
 rm -rf /tmp/lore-tmp
 ```
 
@@ -186,7 +188,7 @@ cd .claude && pnpm install && cd ..
 {
   "permissions": {
     "allow": [
-      "mcp__lore",
+      "mcp__lore-framework",
       "Skill(lore)",
       "Skill(lore-git)"
     ]
@@ -272,7 +274,7 @@ Add to your root `CLAUDE.md`:
 | Check | File | If Missing |
 |-------|------|------------|
 | **Who** | `lore/0-session/current-user.md` | Auto-generated from `LORE_SESSION_CURRENT_USER` env |
-| **What** | `lore/0-session/current-task.md` | Pick from `lore/0-session/next-tasks.md`, use MCP tool `lore-set-task` |
+| **What** | `lore/0-session/current-task.md` | Pick from `lore/0-session/next-tasks.md`, use MCP tool `lore-framework_set-task` |
 
 ## Task-Gated Development
 
@@ -288,7 +290,7 @@ Add to your root `CLAUDE.md`:
 
 ## Verification
 
-Ask Claude to run `lore-show-session` MCP tool. Should show user (if env set) and "Task: not set".
+Ask Claude to run `lore-framework_show-session` MCP tool. Should show user (if env set) and "Task: not set".
 
 ## File Checklist
 

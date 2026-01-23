@@ -3,13 +3,13 @@
  * MCP Server for Lore Framework
  *
  * Provides tools for managing lore/ directory:
- * - lore_set-user: Set current user from team.yaml
- * - lore_set-task: Set current task symlink
- * - lore_show-session: Show current session state
- * - lore_list-users: List available users from team.yaml
- * - lore_clear-task: Clear current task symlink
- * - lore_generate-index: Regenerate lore/README.md and next-tasks.md
- * - lore_validate: Validate frontmatter in tasks, ADRs, and notes
+ * - lore-framework_set-user: Set current user from team.yaml
+ * - lore-framework_set-task: Set current task symlink
+ * - lore-framework_show-session: Show current session state
+ * - lore-framework_list-users: List available users from team.yaml
+ * - lore-framework_clear-task: Clear current task symlink
+ * - lore-framework_generate-index: Regenerate lore/README.md and next-tasks.md
+ * - lore-framework_validate: Validate frontmatter in tasks, ADRs, and notes
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';

@@ -1,6 +1,6 @@
-# @maledorak/lore-mcp Development
+# lore-framework-mcp Development
 
-MCP server package for the lore framework.
+MCP server package for Lore Framework.
 
 ## Project Structure
 
@@ -41,22 +41,22 @@ To publish a new version:
 
 1. Bump version in `package.json` (or use `npm version patch|minor|major --no-git-tag-version`)
 2. Commit the changes
-3. Create and push a tag: `git tag lore-mcp@X.Y.Z && git push origin lore-mcp@X.Y.Z`
+3. Create and push a tag: `git tag lore-framework-mcp@X.Y.Z && git push origin lore-framework-mcp@X.Y.Z`
 4. GitHub Actions workflow will automatically build and publish to npm
 
-The workflow is defined in `.github/workflows/publish-lore-mcp.yml`.
+The workflow is defined in `.github/workflows/publish-lore-framework-mcp.yml`.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `lore_set-user` | Set current user from team.yaml |
-| `lore_set-task` | Set current task by ID (creates symlink) |
-| `lore_show-session` | Show current session state (user and task) |
-| `lore_list-users` | List available users from team.yaml |
-| `lore_clear-task` | Clear current task symlink |
-| `lore_generate-index` | Regenerate lore/README.md and next-tasks.md |
-| `lore_validate` | Validate frontmatter in tasks, ADRs, and notes |
+| `lore-framework_set-user` | Set current user from team.yaml |
+| `lore-framework_set-task` | Set current task by ID (creates symlink) |
+| `lore-framework_show-session` | Show current session state (user and task) |
+| `lore-framework_list-users` | List available users from team.yaml |
+| `lore-framework_clear-task` | Clear current task symlink |
+| `lore-framework_generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore-framework_validate` | Validate frontmatter in tasks, ADRs, and notes |
 
 ## Architecture
 

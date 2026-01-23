@@ -46,7 +46,7 @@ Returns:
 The target for sources is: `lore/{path}/sources/`
 
 **If no current task is set, inform the user:**
-> No current task set. Use `lore-set-task` MCP tool to set a task before fetching sources.
+> No current task set. Use `lore-framework_set-task` MCP tool to set a task before fetching sources.
 
 ## Critical Knowledge
 

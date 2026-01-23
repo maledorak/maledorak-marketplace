@@ -1,4 +1,6 @@
-# Lore Framework Installation (Plugin)
+# Lore Framework Installation (Plugin) [BETA]
+
+> **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
 > **Use this when:** You exclusively use Claude Code CLI and never remote environments.
 >
@@ -29,7 +31,7 @@
 // .claude/settings.json
 {
   "enabledPlugins": {
-    "lore@maledorak-private-marketplace": true
+    "lore-framework@maledorak-private-marketplace": true
   }
 }
 ```
@@ -41,7 +43,7 @@
 {
   "permissions": {
     "allow": [
-      "mcp__plugin_lore_lore",
+      "mcp__plugin_lore-framework_lore-framework",
       "Skill(lore)",
       "Skill(lore-git)"
     ]
@@ -67,13 +69,13 @@
 | Component | Description |
 |-----------|-------------|
 | **Skills** | `/lore`, `/lore-git` |
-| **MCP Tools** | `lore-set-user`, `lore-set-task`, `lore-show-session`, `lore-list-users`, `lore-clear-task`, `lore-generate-index` |
+| **MCP Tools** | `lore-framework_set-user`, `lore-framework_set-task`, `lore-framework_show-session`, `lore-framework_list-users`, `lore-framework_clear-task`, `lore-framework_generate-index`, `lore-framework_validate` |
 | **Agents** | `lore-fetch-source` (web archiving) |
 | **Hooks** | SessionStart (auto user/index), PostToolUse (auto-regenerate index) |
 
 ## Verification
 
-Ask Claude to run `lore-show-session` MCP tool.
+Ask Claude to run `lore-framework_show-session` MCP tool.
 
 ---
 

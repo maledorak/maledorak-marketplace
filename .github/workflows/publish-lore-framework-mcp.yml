@@ -1,9 +1,9 @@
-name: Publish lore-mcp
+name: Publish lore-framework-mcp
 
 on:
   push:
     tags:
-      - 'lore-mcp@*'
+      - 'lore-framework-mcp@*'
   workflow_dispatch:
     inputs:
       version:
@@ -18,7 +18,7 @@ jobs:
       contents: write
     defaults:
       run:
-        working-directory: packages/lore-mcp
+        working-directory: packages/lore-framework-mcp-ts
 
     steps:
       - name: Checkout
@@ -51,13 +51,13 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          name: "lore-mcp@${{ steps.version.outputs.version }}"
+          name: "lore-framework-mcp@${{ steps.version.outputs.version }}"
           body: |
-            Published to npm: https://www.npmjs.com/package/lore-mcp
+            Published to npm: https://www.npmjs.com/package/lore-framework-mcp
 
             Install:
             ```
-            npx lore-mcp@${{ steps.version.outputs.version }}
+            npx lore-framework-mcp@${{ steps.version.outputs.version }}
             ```
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 {
-  "name": "lore",
-  "version": "1.2.0",
+  "name": "lore-framework",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "dependencies": {

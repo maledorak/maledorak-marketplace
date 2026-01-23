@@ -36,10 +36,10 @@ Quick: Ask Claude to "bootstrap lore" after loading this skill.
 ```
 
 **Manual setup via MCP tools:**
-- User: `lore-set-user` tool with user_id parameter
-- Task: `lore-set-task` tool with task_id parameter
-- Show: `lore-show-session` tool
-- List users: `lore-list-users` tool
+- User: `lore-framework_set-user` tool with user_id parameter
+- Task: `lore-framework_set-task` tool with task_id parameter
+- Show: `lore-framework_show-session` tool
+- List users: `lore-framework_list-users` tool
 
 **Why:** Code is ephemeral; tasks + worklogs provide AI-readable history for future sessions.
 

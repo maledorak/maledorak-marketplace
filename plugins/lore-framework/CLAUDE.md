@@ -1,18 +1,20 @@
-# Lore Plugin
+# Lore Framework Plugin [BETA]
 
 Claude Code plugin for managing `lore/` directory - tracking tasks, ADRs, wiki, session, and code history in projects.
+
+> **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
 ## MCP Tools
 
 | Tool | Description |
 |------|-------------|
-| `lore_set-user` | Set current user from team.yaml |
-| `lore_set-task` | Set current task by ID (creates symlink) |
-| `lore_show-session` | Show current session state (user and task) |
-| `lore_list-users` | List available users from team.yaml |
-| `lore_clear-task` | Clear current task symlink |
-| `lore_generate-index` | Regenerate lore/README.md and next-tasks.md |
-| `lore_validate` | Validate frontmatter in tasks, ADRs, and notes |
+| `lore-framework_set-user` | Set current user from team.yaml |
+| `lore-framework_set-task` | Set current task by ID (creates symlink) |
+| `lore-framework_show-session` | Show current session state (user and task) |
+| `lore-framework_list-users` | List available users from team.yaml |
+| `lore-framework_clear-task` | Clear current task symlink |
+| `lore-framework_generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore-framework_validate` | Validate frontmatter in tasks, ADRs, and notes |
 
 ## Environment Variables
 

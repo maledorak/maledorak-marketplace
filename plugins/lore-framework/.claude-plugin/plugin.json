@@ -1,16 +1,16 @@
 {
-  "name": "lore",
-  "version": "1.2.0",
-  "description": "Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
+  "name": "lore-framework",
+  "version": "1.2.1",
+  "description": "[BETA] Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",
     "email": "mariusz@korzekwa.dev"
   },
-  "keywords": ["tasks", "adr", "wiki", "session", "lore", "project-management"],
+  "keywords": ["tasks", "adr", "wiki", "session", "lore", "project-management", "lore-framework"],
   "mcpServers": {
-    "lore": {
+    "lore-framework": {
       "command": "npx",
-      "args": ["-y", "lore-mcp@latest"]
+      "args": ["-y", "lore-framework-mcp@latest"]
     }
   }
 }

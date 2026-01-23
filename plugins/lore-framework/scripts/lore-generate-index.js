@@ -345,7 +345,7 @@ function generateNext(tasks, blocks, ready) {
   const lines = [
     '# Next Tasks',
     '',
-    '> Auto-generated. Use `lore-generate-index` MCP tool to regenerate.',
+    '> Auto-generated. Use `lore-framework_generate-index` MCP tool to regenerate.',
     '> Full index: [README.md](../README.md)',
     '',
   ];
@@ -384,7 +384,7 @@ function generateNext(tasks, blocks, ready) {
 
   lines.push('---');
   lines.push('');
-  lines.push('Set current task: use `lore-set-task` MCP tool with task ID');
+  lines.push('Set current task: use `lore-framework_set-task` MCP tool with task ID');
   lines.push('');
 
   return lines.join('\n');
@@ -409,7 +409,7 @@ function generateIndex(loreDir) {
   sections.push(`# Lore Index
 
 > Auto-generated on ${dateStr}. Do not edit manually.
-> Use \`lore-generate-index\` MCP tool to regenerate.
+> Use \`lore-framework_generate-index\` MCP tool to regenerate.
 
 Quick reference for task dependencies, status, and ADR relationships.`);
 
@@ -470,7 +470,7 @@ Quick reference for task dependencies, status, and ADR relationships.`);
 
 ## Regeneration
 
-Use \`lore-generate-index\` MCP tool to regenerate this index.
+Use \`lore-framework_generate-index\` MCP tool to regenerate this index.
 `);
 
   return [sections.join('\n'), nextContent];

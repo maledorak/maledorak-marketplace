@@ -1,6 +1,8 @@
-# Lore Plugin
+# Lore Framework Plugin [BETA]
 
 Manage lore/ directory for tracking tasks, code history, and project state.
+
+> **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
 ## Features
 
@@ -16,7 +18,7 @@ Manage lore/ directory for tracking tasks, code history, and project state.
 Open your project in Claude Code and say:
 
 ```
-Install lore framework from: <path-to-marketplace>/plugins/lore/skills/lore/INSTALL.md
+Install lore framework from: <path-to-marketplace>/plugins/lore-framework/skills/lore/INSTALL.md
 I use Claude Code Remote/Desktop/CLI (pick one)
 ```
 
@@ -25,7 +27,7 @@ Claude will read the instructions and copy all files manually.
 ### Option 2: Plugin (CLI only)
 
 ```shell
-/plugin install lore@maledorak-private-marketplace
+/plugin install lore-framework@maledorak-private-marketplace
 ```
 
 > **Note:** Plugins only work in Claude Code CLI for now. For Desktop/Web, use Option 1.
@@ -40,12 +42,13 @@ This plugin provides MCP tools that Claude can use directly:
 
 | Tool | Description |
 |------|-------------|
-| `lore-set-user` | Set current user from team.yaml |
-| `lore-set-task` | Set current task by ID (creates symlink) |
-| `lore-show-session` | Show current session state (user and task) |
-| `lore-list-users` | List available users from team.yaml |
-| `lore-clear-task` | Clear current task symlink |
-| `lore-generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore-framework_set-user` | Set current user from team.yaml |
+| `lore-framework_set-task` | Set current task by ID (creates symlink) |
+| `lore-framework_show-session` | Show current session state (user and task) |
+| `lore-framework_list-users` | List available users from team.yaml |
+| `lore-framework_clear-task` | Clear current task symlink |
+| `lore-framework_generate-index` | Regenerate lore/README.md and next-tasks.md |
+| `lore-framework_validate` | Validate frontmatter in tasks, ADRs, and notes |
 
 ## Hooks
 
@@ -61,4 +64,4 @@ For manual CLI usage:
 
 ## Version
 
-1.0.0
+1.2.1

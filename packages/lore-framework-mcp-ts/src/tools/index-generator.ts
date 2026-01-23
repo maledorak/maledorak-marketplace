@@ -313,7 +313,7 @@ function generateNext(tasks: Map<string, Task>, blocks: Map<string, string[]>, r
   const lines = [
     '# Next Tasks',
     '',
-    '> Auto-generated. Use `lore_generate-index` tool to regenerate.',
+    '> Auto-generated. Use `lore-framework_generate-index` tool to regenerate.',
     '> Full index: [README.md](../README.md)',
     '',
   ];
@@ -353,7 +353,7 @@ function generateNext(tasks: Map<string, Task>, blocks: Map<string, string[]>, r
 
   lines.push('---');
   lines.push('');
-  lines.push('Set current task: use `lore_set-task` tool with task ID');
+  lines.push('Set current task: use `lore-framework_set-task` tool with task ID');
   lines.push('');
 
   return lines.join('\n');
@@ -445,7 +445,7 @@ Quick reference for task dependencies, status, and ADR relationships.`);
 
 export function registerIndexTools(server: McpServer, getLoreDir: () => string): void {
   server.registerTool(
-    'lore_generate-index',
+    'lore-framework_generate-index',
     {
       title: 'Generate Index',
       description: 'Regenerate lore/README.md and 0-session/next-tasks.md from task and ADR frontmatter',

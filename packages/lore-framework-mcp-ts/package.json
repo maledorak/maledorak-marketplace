@@ -1,9 +1,9 @@
 {
-  "name": "lore-mcp",
+  "name": "lore-framework-mcp",
   "version": "1.2.1",
-  "description": "MCP server for lore framework - AI-readable project memory with task/ADR/wiki management",
+  "description": "MCP server for Lore Framework - AI-readable project memory with task/ADR/wiki management",
   "bin": {
-    "lore-mcp": "./dist/index.js"
+    "lore-framework-mcp": "./dist/index.js"
   },
   "type": "module",
   "engines": {
