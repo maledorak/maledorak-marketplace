@@ -27,6 +27,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `lore-framework_validate` MCP tool - validates frontmatter in tasks, ADRs, and notes
 - Frontmatter validation schemas for tasks, ADRs, and notes
 - History entry validation with `who`, `reason`, `spawned_from`, `spawns` fields
+- CLI mode for `lore-framework-mcp` npm package - run commands via `npx lore-framework-mcp <command>`
+- Auto-add lore session files to `.gitignore` on session start
+- MIT License
+
+### Removed
+
+- Local JS scripts (replaced by CLI in npm package)
+- Plugin node_modules dependencies (uses npx instead)
 
 ## [1.0.6] - 2026-01-19
 
