@@ -40,6 +40,8 @@ jobs:
 
       - name: Publish to npm (OIDC)
         run: npm publish --access public --provenance
+        env:
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Get published version
         id: version
