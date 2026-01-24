@@ -289,6 +289,11 @@ project/
 
 When Claude Code web supports plugins:
 
-1. Delete `.claude/hooks/`, `.claude/agents/`, `.claude/skills/lore-framework*`
-2. Remove hooks from `.claude/settings.json`
+1. Delete lore-framework files:
+   - `.claude/hooks/session-start.sh`
+   - `.claude/hooks/on-file-change.sh`
+   - `.claude/agents/lore-framework-fetch-source.md`
+   - `.claude/skills/lore-framework/`
+   - `.claude/skills/lore-framework-git/`
+2. Remove lore-framework hooks from `.claude/settings.json`
 3. Follow [INSTALL-PLUGIN.md](INSTALL-PLUGIN.md) instead
