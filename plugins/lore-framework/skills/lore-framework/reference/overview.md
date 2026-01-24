@@ -178,7 +178,7 @@ I- ───► Q- ───► R- ───► S- ───► G- ───► 
 
 ## Using This System
 
-**For Claude:** Use `/lore` skill when working with any part of lore/
+**For Claude:** Use `/lore-framework` skill when working with any part of lore/
 
 **For humans:**
 1. Start with this overview.md

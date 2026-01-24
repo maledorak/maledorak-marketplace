@@ -44,8 +44,8 @@
   "permissions": {
     "allow": [
       "mcp__plugin_lore-framework_lore-framework",
-      "Skill(lore)",
-      "Skill(lore-git)"
+      "Skill(lore-framework)",
+      "Skill(lore-framework-git)"
     ]
   }
 }
@@ -62,13 +62,13 @@
 }
 ```
 
-5. Run `/lore` and ask Claude to "bootstrap lore framework"
+5. Run `/lore-framework` and ask Claude to "bootstrap lore framework"
 
 ## What You Get
 
 | Component | Description |
 |-----------|-------------|
-| **Skills** | `/lore`, `/lore-git` |
+| **Skills** | `/lore-framework`, `/lore-framework-git` |
 | **MCP Tools** | `lore-framework_set-user`, `lore-framework_set-task`, `lore-framework_show-session`, `lore-framework_list-users`, `lore-framework_clear-task`, `lore-framework_generate-index`, `lore-framework_validate` |
 | **Agents** | `lore-framework-fetch-source` (web archiving) |
 | **Hooks** | SessionStart (auto user/index), PostToolUse (auto-regenerate index) |

@@ -1,5 +1,5 @@
 ---
-name: lore-git
+name: lore-framework-git
 description: Git commit messages following Conventional Commits 1.0.0 with lore task references. Use when making commits to ensure semantic versioning and task traceability.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: lore
+name: lore-framework
 description: Manage lore/ directory for tracking tasks, ADRs, wiki, and session. Use for session setup (current-user, current-task), task management (active/blocked/archive), ADR creation, wiki updates, and lore index generation. Invoke for any lore/ directory operations.
 ---
 

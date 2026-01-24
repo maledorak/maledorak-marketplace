@@ -70,7 +70,7 @@ See [MCP npm Migration Report](docs/mcp-npm-migration.md) for background.
 ### Changed
 
 - Updated INSTALL.md to reference MCP tools instead of scripts
-- Added permission breakdown for `mcp__plugin_lore_lore`, `Skill(lore)`, `Skill(lore-git)`
+- Added permission breakdown for `mcp__plugin_lore_lore`, `Skill(lore-framework)`, `Skill(lore-framework-git)`
 
 ## [1.0.2] - 2026-01-19
 

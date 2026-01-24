@@ -48,8 +48,8 @@ mkdir -p .claude/skills
 
 # Clone and copy
 git clone --depth 1 https://github.com/maledorak/maledorak-marketplace /tmp/lore-tmp
-cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore .claude/skills/
-cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore-git .claude/skills/
+cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore-framework .claude/skills/
+cp -r /tmp/lore-tmp/plugins/lore-framework/skills/lore-framework-git .claude/skills/
 rm -rf /tmp/lore-tmp
 ```
 
@@ -150,8 +150,8 @@ chmod +x .claude/hooks/*.sh
   "permissions": {
     "allow": [
       "mcp__lore-framework",
-      "Skill(lore)",
-      "Skill(lore-git)"
+      "Skill(lore-framework)",
+      "Skill(lore-framework-git)"
     ]
   },
   "hooks": {
@@ -289,6 +289,6 @@ project/
 
 When Claude Code web supports plugins:
 
-1. Delete `.claude/hooks/`, `.claude/agents/`, `.claude/skills/lore*`
+1. Delete `.claude/hooks/`, `.claude/agents/`, `.claude/skills/lore-framework*`
 2. Remove hooks from `.claude/settings.json`
 3. Follow [INSTALL-PLUGIN.md](INSTALL-PLUGIN.md) instead

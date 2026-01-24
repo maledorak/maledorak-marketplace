@@ -18,7 +18,7 @@ Manage lore/ directory for tracking tasks, code history, and project state.
 Open your project in Claude Code and say:
 
 ```
-Install lore framework from: <path-to-marketplace>/plugins/lore-framework/skills/lore/INSTALL.md
+Install lore framework from: <path-to-marketplace>/plugins/lore-framework/docs/INSTALL.md
 I use Claude Code Remote/Desktop/CLI (pick one)
 ```
 

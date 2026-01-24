@@ -43,8 +43,8 @@ lore/
 
 | Skill | Description |
 |-------|-------------|
-| `lore` | Task-gated development, note types (Q/I/R/S/G), workflows |
-| `lore-git` | Git commits with Conventional Commits + lore task references |
+| `lore-framework` | Task-gated development, note types (Q/I/R/S/G), workflows |
+| `lore-framework-git` | Git commits with Conventional Commits + lore task references |
 
 ## Agents
 
