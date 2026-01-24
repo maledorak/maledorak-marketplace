@@ -1,6 +1,6 @@
 {
   "name": "lore-framework",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "[BETA] Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",
