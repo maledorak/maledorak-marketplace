@@ -4,6 +4,36 @@ Manage lore/ directory for tracking tasks, code history, and project state.
 
 > **Note:** This project is in beta. APIs and schemas may change. Version compatibility will be maintained through plugin version numbers.
 
+## Motivation
+
+**LLMs need "why", not just "what".**
+
+When an LLM looks at code without history, it treats existing patterns as the gold standard. The problem? It might replicate:
+- Legacy hacks from old migrations
+- Workarounds for bugs that were never documented
+- Temporary solutions that became permanent by accident
+
+Just like humans struggle with undocumented codebases, LLMs face the same challenge—but with higher replication risk.
+
+**Lore provides AI-readable project memory:**
+
+| Component | What it captures | How it helps LLM |
+|-----------|------------------|------------------|
+| **Tasks** | Requirements, acceptance criteria, blockers | Knows what to build and why, tracks dependencies |
+| **Worklogs** | Step-by-step reasoning during implementation | Sees the evolution, not just the end result |
+| **ADRs** | Architecture decisions with context and alternatives | Understands *why* current approach was chosen |
+| **Wiki** | Living documentation of current state | Has up-to-date reference, not stale docs |
+| **Session** | Current user, active task | Maintains focus and continuity across conversations |
+
+**Task-gated session:**
+
+Active task and current user are symlinked to session files that Claude reads automatically as part of system context. This means:
+- LLM always knows *what* it's working on and *who* it's working for
+- Task requirements, history, and notes are injected into every conversation
+- No need to repeat context—it's always there
+
+**Result:** LLM that understands context makes better suggestions and avoids perpetuating technical debt.
+
 ## Features
 
 - **Session Management:** Track current user and active task
@@ -69,4 +99,4 @@ npx lore-framework-mcp generate-index      # Generate lore index
 
 ## Version
 
-1.2.1
+1.2.5
