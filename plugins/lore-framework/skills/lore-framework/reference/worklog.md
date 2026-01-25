@@ -119,7 +119,7 @@ focus: "Database architecture design"
 
 ## Notes Created/Updated
 
-- [G-six-memory/20_database_postgresql](notes/G-six-memory/20_database_postgresql.md) - developing
+- [G-api-design/20_database](notes/G-api-design/20_database.md) - developing
 - [S-database-architecture-decision](notes/S-database-architecture-decision.md) - seed
 
 ## Questions Raised

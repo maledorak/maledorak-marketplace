@@ -35,7 +35,7 @@ Create `.mcp.json` in project root:
   "mcpServers": {
     "lore-framework": {
       "command": "npx",
-      "args": ["-y", "lore-framework-mcp@1.2.4"]
+      "args": ["-y", "lore-framework-mcp@1.2.6"]
     }
   }
 }
@@ -99,11 +99,11 @@ cd "$CLAUDE_PROJECT_DIR"
 
 # Set current user from env var
 if [ -n "$LORE_SESSION_CURRENT_USER" ]; then
-    npx -y lore-framework-mcp@1.2.4 set-user --env --quiet 2>/dev/null || true
+    npx -y lore-framework-mcp@1.2.6 set-user --env --quiet 2>/dev/null || true
 fi
 
 # Regenerate next-tasks.md
-npx -y lore-framework-mcp@1.2.4 generate-index --next-only --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@1.2.6 generate-index --next-only --quiet 2>/dev/null || true
 ```
 
 **`.claude/hooks/on-file-change.sh`:**
@@ -132,7 +132,7 @@ fi
 cd "$CLAUDE_PROJECT_DIR"
 
 # Regenerate lore index
-npx -y lore-framework-mcp@1.2.4 generate-index --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@1.2.6 generate-index --quiet 2>/dev/null || true
 ```
 
 Make executable:

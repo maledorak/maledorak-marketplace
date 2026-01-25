@@ -66,6 +66,14 @@ lore-framework-mcp generate-index --next-only --quiet
 | `lore_framework_clear_task` | Clear current task symlink |
 | `lore_framework_generate_index` | Regenerate lore/README.md and next-tasks.md |
 
+## Why Lore?
+
+**LLMs need "why", not just "what".**
+
+Without history, LLMs treat existing code patterns as gospel—replicating legacy hacks, undocumented workarounds, and accidental complexity. Lore provides AI-readable project memory: tasks capture requirements, worklogs show reasoning, ADRs explain decisions.
+
+**Read more:** [Full motivation](https://github.com/maledorak/maledorak-marketplace/tree/main/plugins/lore-framework#motivation)
+
 ## Lore Directory Structure
 
 ```

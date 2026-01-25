@@ -1,6 +1,6 @@
 # Backlog System
 
-Future work tracking for the Six project.
+Future work tracking for your project.
 
 ## Purpose
 
@@ -30,12 +30,13 @@ Use tags for backlog-specific metadata:
 | Category | Tags |
 |----------|------|
 | Priority | `priority-high`, `priority-medium`, `priority-low` |
-| Phase | `phase-pro`, `phase-enterprise`, `phase-future` |
 | Effort | `effort-small`, `effort-medium`, `effort-large` |
+
+Add project-specific tags as needed (e.g., `phase-*` for release phases).
 
 **Example:**
 ```yaml
-tags: [access-control, manager, priority-high, phase-pro, effort-medium]
+tags: [database, api, priority-high, effort-medium]
 ```
 
 ### Priority
@@ -45,14 +46,6 @@ tags: [access-control, manager, priority-high, phase-pro, effort-medium]
 | `priority-high` | Important for next major release |
 | `priority-medium` | Nice to have, do when capacity allows |
 | `priority-low` | Far future, parking lot |
-
-### Phase
-
-| Tag | Meaning |
-|-----|---------|
-| `phase-pro` | Pro tier features ($20/user/mo) |
-| `phase-enterprise` | Enterprise tier features ($30+/user/mo) |
-| `phase-future` | No specific timeline |
 
 ### Effort
 
@@ -90,8 +83,8 @@ When done, move to `archive/` like any other task.
 Backlog items may be spawned from G- notes:
 
 ```yaml
-# In G-six-memory/README.md
+# In G-api-design/README.md
 spawns:
-  - ../../1-tasks/active/0008_FEATURE_postgresql-schema.md  # immediate
-  - ../../1-tasks/backlog/0030_FEATURE_schema-evolution.md  # future
+  - ../../1-tasks/active/0008_FEATURE_api-endpoints.md  # immediate
+  - ../../1-tasks/backlog/0030_FEATURE_api-versioning.md  # future
 ```

@@ -1,6 +1,6 @@
 [project]
 name = "lore-framework-mcp"
-version = "1.2.2"
+version = "1.2.6"
 description = "MCP server for Lore Framework - AI-readable project memory with task/ADR/wiki management"
 readme = "README.md"
 license = "MIT"

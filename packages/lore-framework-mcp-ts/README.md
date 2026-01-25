@@ -9,7 +9,7 @@ MCP server for **Lore Framework** - AI-readable project memory with task/ADR/wik
 ## Installation
 
 ```bash
-npx lore-framework-mcp@1.2.4
+npx lore-framework-mcp@1.2.6
 ```
 
 Or add to your Claude Code MCP config:
@@ -19,7 +19,7 @@ Or add to your Claude Code MCP config:
   "mcpServers": {
     "lore": {
       "command": "npx",
-      "args": ["-y", "lore-framework-mcp@1.2.4"]
+      "args": ["-y", "lore-framework-mcp@1.2.6"]
     }
   }
 }
@@ -37,14 +37,13 @@ Or add to your Claude Code MCP config:
 | `lore-framework_generate-index` | Regenerate lore/README.md and next-tasks.md |
 | `lore-framework_validate` | Validate frontmatter in tasks, ADRs, and notes |
 
-## What is Lore Framework?
+## Why Lore?
 
-Lore Framework provides a structured `lore/` directory for managing:
+**LLMs need "why", not just "what".**
 
-- **Tasks** - with status tracking, dependencies, and research notes
-- **ADRs** - Architecture Decision Records
-- **Wiki** - Living documentation
-- **Session** - Current user and task context
+Without history, LLMs treat existing code patterns as gospel—replicating legacy hacks, undocumented workarounds, and accidental complexity. Lore provides AI-readable project memory: tasks capture requirements, worklogs show reasoning, ADRs explain decisions.
+
+**Read more:** [Full motivation](https://github.com/maledorak/maledorak-marketplace/tree/main/plugins/lore-framework#motivation)
 
 ## Directory Structure
 

@@ -16,7 +16,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz
+    who: your-id
     spawned_from:                         # Optional: what led to this
       - notes/Q-parent-note.md
     note: "Note created"
@@ -68,12 +68,12 @@ links: []
 history:
   - date: 2025-12-10
     status: seed
-    who: mariusz
+    who: your-id
     note: "Note created"
   - date: 2025-12-15
     status: mature
-    who: mariusz
-    note: "Answered through R-memory-patterns and G-six-memory"
+    who: your-id
+    note: "Answered through R-memory-patterns and G-api-design"
 ---
 ```
 
@@ -91,11 +91,11 @@ links: []
 history:
   - date: 2025-12-10
     status: seed
-    who: mariusz
+    who: your-id
     note: "Note created"
   - date: 2025-12-15
     status: mature
-    who: mariusz
+    who: your-id
     note: "Research complete"
 ---
 ```
@@ -108,13 +108,13 @@ type: synthesis
 status: mature
 spawned_from: notes/R-memory-patterns/README.md
 spawns:
-  - notes/G-six-memory/README.md
+  - notes/G-api-design/README.md
 tags: [architecture, decision]
 links: []
 history:
   - date: 2025-12-12
     status: mature
-    who: mariusz
+    who: your-id
     note: "Decision documented"
 ---
 ```
@@ -122,7 +122,7 @@ history:
 **Generation note:**
 ```yaml
 ---
-title: "Six Memory System Specification"
+title: "API Design Specification"
 type: generation
 status: mature
 spawned_from: notes/S-memory-architecture-decision.md
@@ -132,11 +132,11 @@ links: []
 history:
   - date: 2025-12-10
     status: seed
-    who: mariusz
+    who: your-id
     note: "Note created"
   - date: 2026-01-09
     status: mature
-    who: mariusz
+    who: your-id
     note: "Specification complete"
 ---
 ```
@@ -178,7 +178,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: active
-    who: mariusz           # Required: person/agent who made the change
+    who: your-id           # Required: person/agent who made the change
     by: ["NNNN"]           # Conditional: see below
     reason: pivot          # Conditional: only for canceled
     note: "Task created"   # Optional
@@ -232,12 +232,12 @@ type: FEATURE
 status: backlog
 related_adr: []
 related_tasks: ["0023"]
-tags: [access-control, priority-high, phase-pro, effort-medium]
+tags: [database, api, priority-high, effort-medium]
 links: []
 history:
   - date: YYYY-MM-DD
     status: backlog
-    who: mariusz
+    who: your-id
     note: "Backlog item created"
 ---
 ```
@@ -247,8 +247,9 @@ history:
 | Category | Tags |
 |----------|------|
 | Priority | `priority-high`, `priority-medium`, `priority-low` |
-| Phase | `phase-pro`, `phase-enterprise`, `phase-future` |
 | Effort | `effort-small`, `effort-medium`, `effort-large` |
+
+Add project-specific tags as needed.
 
 **Promotion:** `git mv backlog/NNNN_*.md active/` then change `status: backlog` → `status: active`
 
@@ -268,11 +269,11 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: proposed
-    who: mariusz
+    who: your-id
     note: "ADR created"
   - date: YYYY-MM-DD
     status: accepted
-    who: mariusz
+    who: your-id
     note: "Accepted after review"
 ---
 ```

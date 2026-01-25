@@ -10,7 +10,7 @@ Notes are atomic units of knowledge, categorized by type via prefix.
 | `I-` | **Idea** | Original thoughts, hypotheses | `I-slack-coworker-bot.md` |
 | `R-` | **Research** | External knowledge gathered | `R-memory-patterns/` |
 | `S-` | **Synthesis** | Our conclusions, decisions | `S-memory-architecture-decision.md` |
-| `G-` | **Generation** | Created artifacts | `G-six-memory/` |
+| `G-` | **Generation** | Created artifacts | `G-api-design/` |
 
 ## When to Use Each Type
 
@@ -80,7 +80,7 @@ Create when drawing conclusions from research. This is the "so what?" note.
 Create for artifacts we produce (specs, schemas, designs).
 
 **Examples:**
-- `G-six-memory/` - Complete system specification
+- `G-api-design/` - Complete system specification
 - `G-postgres-schema.md` - Database schema
 - `G-api-design.md` - API specification
 

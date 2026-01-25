@@ -107,7 +107,7 @@ spawns:                             # What this note led to
 
 ### Why Track Lineage?
 
-1. **Understand decisions** - Trace back from G-six-memory to the questions that drove it
+1. **Understand decisions** - Trace back from G- artifacts to the questions that drove them
 2. **Impact analysis** - If a question changes, see what's affected
 3. **Knowledge gaps** - Spot questions without research or synthesis
 4. **Context recovery** - Claude can follow the chain to understand why
@@ -203,11 +203,11 @@ When G- notes are ready for implementation:
 
 **Example lineage:**
 ```
-G-six-memory/README.md
+G-api-design/README.md
 └── spawns:
     - ../../1-tasks/0003_FEATURE_domain-models.md
-    - ../../1-tasks/0004_FEATURE_postgresql-schema.md
-    - ../../1-tasks/0005_FEATURE_neo4j-layer.md
+    - ../../1-tasks/0004_FEATURE_database-schema.md
+    - ../../1-tasks/0005_FEATURE_api-endpoints.md
 ```
 
 ## Connecting to ADRs
@@ -222,26 +222,26 @@ S- notes often inform ADRs:
 - S- note: "Here's what we concluded from research"
 - ADR: "Here's the official decision and its consequences"
 
-## Example: Memory Architecture
+## Example: API Design
 
-Real lineage from Six project:
+Example lineage for an API design task:
 
 ```
-Q-how-should-ai-memory-work.md
-├── spawned: R-memory-patterns/
-│   ├── cognitive-foundations.md
-│   ├── ai-implementations.md
-│   └── frameworks-comparison.md
-├── spawned: I-slack-coworker-bot.md
-└── spawned: I-synthetic-memory-testing.md
+Q-how-should-api-authentication-work.md
+├── spawned: R-auth-patterns/
+│   ├── jwt-vs-sessions.md
+│   ├── oauth-providers.md
+│   └── security-best-practices.md
+├── spawned: I-use-refresh-tokens.md
+└── spawned: I-role-based-access.md
 
-R-memory-patterns/
-└── spawned: S-memory-architecture-decision.md
-    └── spawned: G-six-memory/
+R-auth-patterns/
+└── spawned: S-auth-architecture-decision.md
+    └── spawned: G-api-design/
         ├── spawned: Task 0003 (domain models)
-        ├── spawned: Task 0004 (postgresql)
-        ├── spawned: Task 0005 (neo4j)
-        └── spawned: Task 0006 (qdrant)
+        ├── spawned: Task 0004 (database schema)
+        ├── spawned: Task 0005 (auth endpoints)
+        └── spawned: Task 0006 (middleware)
 ```
 
 ## Best Practices

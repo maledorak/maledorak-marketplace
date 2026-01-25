@@ -41,6 +41,22 @@ Active task and current user are symlinked to session files that Claude reads au
 - **ADRs:** Architecture Decision Records for significant decisions
 - **Wiki:** Living documentation of current project state
 
+## Note Prefixes
+
+Complex tasks contain research notes in a `notes/` subdirectory. Each note is prefixed to indicate its type:
+
+| Prefix | Type | Purpose | Example |
+|--------|------|---------|---------|
+| `Q-` | Question | What we're trying to answer | `Q-how-should-auth-work.md` |
+| `I-` | Idea | Original thoughts, hypotheses | `I-use-jwt-tokens.md` |
+| `R-` | Research | External knowledge gathered | `R-oauth-patterns/` |
+| `S-` | Synthesis | Our conclusions ("so what?") | `S-auth-architecture.md` |
+| `G-` | Generation | Created artifacts (specs, schemas) | `G-api-design/` |
+
+**Typical flow:** Q → R → S → G → Tasks
+
+Ideas (I-) are special—they can emerge at any point and lead anywhere.
+
 ## Installation
 
 ### Option 1: Ask Claude (Recommended)
@@ -99,7 +115,7 @@ npx lore-framework-mcp generate-index      # Generate lore index
 
 ## Version
 
-1.2.5
+1.2.6
 
 ## Author
 

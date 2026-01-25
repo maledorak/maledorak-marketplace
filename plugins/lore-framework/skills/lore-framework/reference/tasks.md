@@ -1,6 +1,6 @@
 # Tasks System
 
-Implementation tracking for the Six project.
+Implementation tracking for your project.
 
 ## Purpose
 
@@ -20,9 +20,9 @@ NNNN_TYPE_slug.md
 
 **Examples:**
 ```
-0003_FEATURE_six-memory-domain-models.md
-0004_FEATURE_postgresql-schema.md
-0017_FEATURE_work-directory-framework.md
+0003_FEATURE_user-authentication.md
+0004_FEATURE_database-schema.md
+0017_FEATURE_api-endpoints.md
 ```
 
 ## Type Reference
@@ -69,7 +69,7 @@ links: []                  # External URLs
 history:
   - date: YYYY-MM-DD       # Required
     status: active         # Required: active | blocked | completed
-    who: mariusz           # Optional: mariusz | bartek | claude
+    who: your-id           # Optional: your-id | teammate | claude
     by: "NNNN"             # Optional: task that caused this (e.g., superseded by)
     note: "Task created"   # Optional: what happened
 ---
@@ -81,7 +81,7 @@ history:
 |-------|----------|-------------|
 | `date` | Yes | ISO date of the status change |
 | `status` | Yes | New status: active, blocked, completed |
-| `who` | No | Person who made the change: mariusz, bartek, claude |
+| `who` | No | Person who made the change: your-id, teammate, claude |
 | `by` | Conditional | Task ID array - **required** for `blocked` and superseded `completed` |
 | `note` | No | Description of what happened |
 
@@ -162,15 +162,15 @@ Future work is tracked in `backlog/` directory (shared ID sequence with tasks).
 Tasks are **spawned from G- notes**:
 
 ```yaml
-# In G-six-memory/README.md
+# In G-api-design/README.md
 spawns:
   - ../../1-tasks/0003_FEATURE_domain-models.md
-  - ../../1-tasks/0004_FEATURE_postgresql-schema.md
+  - ../../1-tasks/0004_FEATURE_database-schema.md
 ```
 
 ```yaml
-# In 004_FEATURE_postgresql-schema.md (Context section)
-Based on `G-six-memory/20_database_postgresql.md`...
+# In 004_FEATURE_database-schema.md (Context section)
+Based on `G-api-design/20_database.md`...
 ```
 
 ## Completing Tasks
@@ -191,11 +191,11 @@ Example history entry:
 history:
   - date: 2026-01-09
     status: active
-    who: mariusz
+    who: your-id
     note: "Task created"
   - date: 2026-01-15
     status: completed
-    who: mariusz
+    who: your-id
     note: "Implementation complete. All tests passing."
 ```
 

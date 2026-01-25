@@ -32,7 +32,7 @@ Quick: Ask Claude to "bootstrap lore" after loading this skill.
 
 **Automatic setup:** Configure `LORE_SESSION_CURRENT_USER` in `.claude/settings.local.json`:
 ```json
-{ "env": { "LORE_SESSION_CURRENT_USER": "mariusz" } }
+{ "env": { "LORE_SESSION_CURRENT_USER": "your-id" } }
 ```
 
 **Manual setup via MCP tools:**
@@ -55,7 +55,7 @@ See [reference/workflow.md](reference/workflow.md) for full rules.
 | "What if we did Y?" | **I-** (Idea) | I-use-crm-for-access-control.md |
 | "I found that Z does..." | **R-** (Research) | R-postgres-rls-patterns.md |
 | "We should do X because Y" | **S-** (Synthesis) | S-chose-three-database-architecture.md |
-| "Here's the detailed spec" | **G-** (Generation) | G-six-memory/ |
+| "Here's the detailed spec" | **G-** (Generation) | G-api-design/ |
 
 ### S- vs G- (Important Distinction)
 
@@ -106,12 +106,12 @@ Ideas are **orthogonal** to the main Q→R→S→G flow:
 
 **Example chain:**
 ```
-1-tasks/archive/001_RESEARCH_ai-memory/notes/
-├── Q-how-should-memory-work.md
-│   └─spawns→ R-memory-patterns/
+1-tasks/archive/0001_RESEARCH_api-design/notes/
+├── Q-how-should-api-work.md
+│   └─spawns→ R-rest-patterns/
 │               └─spawns→ S-architecture-decision.md
-│                           └─spawns→ G-six-memory/
-└── G-six-memory/ spawns → 1-tasks/active/007_FEATURE_domain-models.md
+│                           └─spawns→ G-api-design/
+└── G-api-design/ spawns → 1-tasks/active/0007_FEATURE_api-endpoints.md
 ```
 
 **Important:** Notes can only link to other notes within the SAME task. Cross-task relationships go in task README via `related_tasks`.
@@ -150,7 +150,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz  # mariusz | bartek | claude
+    who: your-id  # your-id | teammate | claude
     note: "Note created"
 ---
 ```
@@ -178,7 +178,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz
+    who: your-id
     note: "Question created"
 ---
 
@@ -205,7 +205,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz
+    who: your-id
     note: "Idea proposed"
 ---
 
@@ -234,7 +234,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz
+    who: your-id
     note: "Decision drafted"
 ---
 
@@ -265,7 +265,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: seed
-    who: mariusz
+    who: your-id
     note: "Specification started"
 ---
 
@@ -309,7 +309,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: active
-    who: mariusz  # mariusz | bartek | claude
+    who: your-id  # your-id | teammate | claude
     note: "Task created"
   # Examples of status changes:
   - date: YYYY-MM-DD
@@ -319,12 +319,12 @@ history:
     note: "Waiting on domain models and PostgreSQL schema"
   - date: YYYY-MM-DD
     status: superseded
-    who: mariusz
+    who: your-id
     by: ["0015"]  # required for superseded
     note: "Replaced by consolidated task"
   - date: YYYY-MM-DD
     status: canceled
-    who: mariusz
+    who: your-id
     reason: pivot  # required for canceled: pivot | obsolete | duplicate
     note: "Direction changed after product review"
 ---
@@ -339,7 +339,6 @@ history:
 | Tag Category | Values |
 |--------------|--------|
 | Priority | `priority-high`, `priority-medium`, `priority-low` |
-| Phase | `phase-pro`, `phase-enterprise`, `phase-future` |
 | Effort | `effort-small`, `effort-medium`, `effort-large` |
 
 **Template:** Use main `1-tasks/_template.md` with `status: backlog`
@@ -364,7 +363,7 @@ links: []
 history:
   - date: YYYY-MM-DD
     status: accepted
-    who: mariusz
+    who: your-id
     note: "ADR created and accepted"
 ---
 ```
