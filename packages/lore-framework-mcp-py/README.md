@@ -2,6 +2,8 @@
 
 MCP server for Lore Framework - AI-readable project memory with task/ADR/wiki management.
 
+> **Important:** This MCP server is just one component of Lore Framework. For the complete experience (skills, hooks, agents), install the full plugin: [lore-framework plugin](https://github.com/maledorak/maledorak-marketplace/tree/main/plugins/lore-framework)
+
 ## Installation
 
 ```bash
