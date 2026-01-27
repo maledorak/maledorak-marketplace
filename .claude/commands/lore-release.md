@@ -1,5 +1,9 @@
 ---
 description: Check version sync across all files and release MCP packages
+license: MIT
+metadata:
+  author: Mariusz (Maledorak) Korzekwa
+  updated: 2026-01-25
 ---
 
 # Release Command

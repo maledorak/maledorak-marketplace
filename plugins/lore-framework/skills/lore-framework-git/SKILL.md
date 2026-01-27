@@ -1,6 +1,10 @@
 ---
 name: lore-framework-git
 description: Git commit messages following Conventional Commits 1.0.0 with lore task references. Use when making commits to ensure semantic versioning and task traceability.
+license: MIT
+metadata:
+  author: Mariusz (Maledorak) Korzekwa
+  updated: 2026-01-25
 ---
 
 # Git Commits with Lore Integration

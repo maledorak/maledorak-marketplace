@@ -1,5 +1,9 @@
 ---
 description: Initialize lore/ directory structure in a new project. Creates directories, CLAUDE.md files, templates, and updates .gitignore.
+license: MIT
+metadata:
+  author: Mariusz (Maledorak) Korzekwa
+  updated: 2026-01-25
 ---
 
 # Lore Framework Init
