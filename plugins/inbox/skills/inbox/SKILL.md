@@ -92,6 +92,14 @@ Inbox location: `{project}/.claude/inbox/`
 2. If yes, analyze existing heading style (e.g., `#` vs `##` for top-level sections)
 3. Add Projects table and Cross-Instance Messaging section matching that style
 4. Place new sections logically (e.g., at the end, or grouped with similar content)
+5. Setup inbox for all projects in the table (same as step 5 above)
+
+**If exists AND has Projects table:**
+
+1. Read all projects from the table
+2. Setup inbox for each project:
+   - Create `../{project}/.claude/inbox/` directory
+   - Add `.claude/inbox/` to `../{project}/.gitignore`
 
 ### 2. Add permissions to settings.json
 

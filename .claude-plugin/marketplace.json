@@ -29,7 +29,7 @@
       "name": "inbox",
       "source": "./plugins/inbox",
       "description": "Cross-project messaging. Ask Claude in other projects to fix bugs, review code, or handle tasks for you.",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "keywords": [
         "messaging",
         "inbox",

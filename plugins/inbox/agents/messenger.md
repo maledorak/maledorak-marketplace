@@ -25,13 +25,11 @@ You send messages to other Claude instances. Message format and types are in the
 4. **Generate filename**: `{timestamp}-{slug}.md`
    - Example: `2026-01-27T14-30-00-request-api-review.md`
 
-5. **Ensure target inbox exists**:
-   - Create `../{project}/.claude/inbox/` if missing
-   - Add `.claude/inbox/` to `../{project}/.gitignore` if not present
+5. **Write message** to `../{project}/.claude/inbox/{filename}`
+   - Just write directly - don't check if directory exists first
+   - If write fails (directory missing): create `../{project}/.claude/inbox/`, add `.claude/inbox/` to `../{project}/.gitignore`, then retry write
 
-6. **Write message** to `../{project}/.claude/inbox/`
-
-7. **Report** what was sent and where
+6. **Report** what was sent and where
 
 ## Example
 
