@@ -5,6 +5,14 @@ All notable changes to the Inbox plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-01-27
+
+### Changed
+
+- Setup now edits `~/.claude/settings.json` directly (user approves) instead of showing manual instructions
+- Updated permissions to include parent CLAUDE.md access (`Edit` + `Write`)
+- Changed permissions documentation to use full paths instead of relative paths
+
 ## [1.0.0] - 2026-01-27
 
 ### Added

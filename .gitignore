@@ -21,3 +21,4 @@ public
 .claude/settings.local.json
 .claude/plans
 .claude/.temp
+.claude/inbox/

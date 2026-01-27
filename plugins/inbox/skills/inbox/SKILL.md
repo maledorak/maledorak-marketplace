@@ -88,20 +88,20 @@ Inbox location: `{project}/.claude/inbox/`
 3. Add Projects table and Cross-Instance Messaging section matching that style
 4. Place new sections logically (e.g., at the end, or grouped with similar content)
 
-### 2. Show permissions to add
+### 2. Add permissions to settings.json
 
-Tell user to add to `~/.claude/settings.json`:
+Read `~/.claude/settings.json` and add these permissions to `permissions.allow` array:
 
-```json
-{
-  "permissions": {
-    "allow": [
-      "Edit(./.claude/inbox/**)",
-      "Write(./.claude/inbox/**)"
-    ]
-  }
-}
 ```
+Edit(./.claude/inbox/**)
+Write(./.claude/inbox/**)
+Edit({path-to-parent}/CLAUDE.md)
+Write({path-to-parent}/CLAUDE.md)
+```
+
+Replace `{path-to-parent}` with actual absolute path to parent directory (e.g., `~/Projects/CLAUDE.md`).
+
+If file doesn't exist, create it with basic structure. User will approve the edit.
 
 ### 3. Setup project inbox
 
@@ -117,6 +117,8 @@ Add to `{project}/.gitignore`:
 ```
 
 **When sending a message:** If target project doesn't have `.claude/inbox/`, create it and add to gitignore before delivering.
+
+**First-time inbox creation:** When creating `.claude/inbox/` for the first time in any project, remind user to add permissions from step 2 to their `~/.claude/settings.json` if not already configured.
 
 ### 4. Add project to registry
 

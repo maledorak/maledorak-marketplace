@@ -1,6 +1,6 @@
 {
   "name": "inbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cross-project messaging for Claude Code. Ask Claude in other projects to fix bugs, review code, or handle tasks for you.",
   "author": {
     "name": "Mariusz (Maledorak) Korzekwa",

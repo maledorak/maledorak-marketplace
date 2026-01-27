@@ -163,7 +163,7 @@ Ask Claude: "Check my inbox" or just read files from `.claude/inbox/`
 
 ## Version
 
-1.0.0
+1.0.1
 
 ## License
 
