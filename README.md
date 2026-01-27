@@ -7,7 +7,7 @@ Personal marketplace for Claude Code plugins maintained by Maledorak.
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | `common` | 1.0.0 | Common development skill: git-commit for Conventional Commits |
-| `inbox` | 1.0.1 | Cross-project messaging. Ask Claude in other projects to handle tasks for you. |
+| `inbox` | 1.0.2 | Cross-project messaging. Ask Claude in other projects to handle tasks for you. |
 | `lore-framework` | 1.2.6 | Manage lore/ directory for tracking tasks, ADRs, wiki, and session |
 
 ## Installation

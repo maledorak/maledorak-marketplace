@@ -5,6 +5,19 @@ All notable changes to the Inbox plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-01-27
+
+### Added
+
+- Permissions for sibling projects' inbox directories (needed for sending messages)
+- Permissions for sibling projects' .gitignore (needed for setup)
+- Project validation when adding to registry (error if directory doesn't exist)
+- Auto-setup inbox directories and .gitignore for initial projects during setup
+
+### Changed
+
+- Expanded permissions documentation with full explanation
+
 ## [1.0.1] - 2026-01-27
 
 ### Changed

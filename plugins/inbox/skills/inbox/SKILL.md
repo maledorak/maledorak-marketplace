@@ -61,8 +61,9 @@ Look for `../CLAUDE.md` (parent directory).
 **If missing:**
 
 1. ASK user: "What 2-3 projects do you want to add to the registry? (e.g., project-a, project-b)"
-2. For each project, ask for a brief purpose/description
-3. Create CLAUDE.md with:
+2. **Validate each project exists** - check if `../{project-name}/` directory exists. If not, ERROR: "Project '{project-name}' not found in parent directory. Check spelling."
+3. For each project, ask for a brief purpose/description
+4. Create CLAUDE.md with:
 
 ```markdown
 # Global Context
@@ -81,6 +82,10 @@ Inbox location: `{project}/.claude/inbox/`
 
 **Optional columns:** User may have additional columns like `Client`, `Notes`, `Status`, etc. Preserve them when editing.
 
+5. **Setup inbox for each initial project:**
+   - Create `../{project}/.claude/inbox/` directory
+   - Add `.claude/inbox/` to `../{project}/.gitignore`
+
 **If exists but missing our sections:**
 
 1. ASK user: "Your parent CLAUDE.md exists but doesn't have project registry. Can I add a section for inbox messaging?"
@@ -97,9 +102,20 @@ Edit(./.claude/inbox/**)
 Write(./.claude/inbox/**)
 Edit({path-to-parent}/CLAUDE.md)
 Write({path-to-parent}/CLAUDE.md)
+Read({path-to-parent}/*/.claude/inbox/**)
+Edit({path-to-parent}/*/.claude/inbox/**)
+Write({path-to-parent}/*/.claude/inbox/**)
+Read({path-to-parent}/*/.gitignore)
+Edit({path-to-parent}/*/.gitignore)
 ```
 
-Replace `{path-to-parent}` with actual absolute path to parent directory (e.g., `~/Projects/CLAUDE.md`).
+Replace `{path-to-parent}` with actual absolute path to parent directory (e.g., `~/Projects`).
+
+**Why these permissions?**
+- First 2: own inbox (receive messages)
+- Next 2: manage project registry
+- Next 3: access sibling projects' inboxes (send messages)
+- Last 2: check/update sibling projects' .gitignore
 
 If file doesn't exist, create it with basic structure. User will approve the edit.
 
@@ -122,7 +138,10 @@ Add to `{project}/.gitignore`:
 
 ### 4. Add project to registry
 
-If project not in global CLAUDE.md Projects table, add it.
+If project not in global CLAUDE.md Projects table:
+1. Validate project directory exists (see "Add project" below)
+2. Add it to the table
+3. Setup inbox directory and gitignore
 
 ## Managing Project Registry
 
@@ -130,10 +149,14 @@ The parent `../CLAUDE.md` contains the project registry.
 
 ### Add project
 
-Add row to Projects table:
-```markdown
-| new-project | Description of the project |
-```
+1. **Validate project exists** - check if `../{project-name}/` directory exists. If not, ERROR: "Project '{project-name}' not found in parent directory. Check spelling."
+2. Add row to Projects table:
+   ```markdown
+   | new-project | Description of the project |
+   ```
+3. **Setup inbox for the project:**
+   - Create `../{project}/.claude/inbox/` directory
+   - Add `.claude/inbox/` to `../{project}/.gitignore`
 
 ### Remove project
 

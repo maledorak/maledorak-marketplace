@@ -97,15 +97,26 @@ Add to `~/.claude/settings.json` (user-level, applies to ALL projects):
   "permissions": {
     "allow": [
       "Edit(./.claude/inbox/**)",
-      "Write(./.claude/inbox/**)"
+      "Write(./.claude/inbox/**)",
+      "Edit(~/Projects/CLAUDE.md)",
+      "Write(~/Projects/CLAUDE.md)",
+      "Read(~/Projects/*/.claude/inbox/**)",
+      "Edit(~/Projects/*/.claude/inbox/**)",
+      "Write(~/Projects/*/.claude/inbox/**)",
+      "Read(~/Projects/*/.gitignore)",
+      "Edit(~/Projects/*/.gitignore)"
     ]
   }
 }
 ```
 
-**Why both Edit and Write?**
-- `Write` - for creating new message files
-- `Edit` - for modifying existing messages (e.g., marking as read)
+Replace `~/Projects` with your actual parent directory path.
+
+**Why these permissions?**
+- `Edit/Write(./.claude/inbox/**)` - own inbox (receive messages)
+- `Edit/Write(~/Projects/CLAUDE.md)` - manage project registry
+- `Read/Edit/Write(~/Projects/*/.claude/inbox/**)` - access sibling projects' inboxes (send messages)
+- `Read/Edit(~/Projects/*/.gitignore)` - check/update sibling projects' .gitignore
 
 ### 4. Inbox setup (automatic for target projects)
 
@@ -163,7 +174,7 @@ Ask Claude: "Check my inbox" or just read files from `.claude/inbox/`
 
 ## Version
 
-1.0.1
+1.0.2
 
 ## License
 
