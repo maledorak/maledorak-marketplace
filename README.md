@@ -9,6 +9,7 @@ Personal marketplace for Claude Code plugins maintained by Maledorak.
 | `common` | 1.0.0 | Common development skill: git-commit for Conventional Commits |
 | `inbox` | 1.0.3 | Cross-project messaging. Ask Claude in other projects to handle tasks for you. |
 | `lore-framework` | 1.2.7 | Manage lore/ directory for tracking tasks, ADRs, wiki, and session |
+| `claude-toolkit` | 1.0.0 | Skills for creating Claude Code plugins, skills, marketplaces, and hooks |
 
 ## Installation
 
@@ -46,6 +47,7 @@ When you trust the repository in Claude Code, the marketplace and plugins will b
    /plugin install common@maledorak-marketplace
    /plugin install inbox@maledorak-marketplace --user
    /plugin install lore-framework@maledorak-marketplace
+   /plugin install claude-toolkit@maledorak-marketplace
    ```
 
 ## Verifying Installation

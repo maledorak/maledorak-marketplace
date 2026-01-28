@@ -1,0 +1,10 @@
+{
+  "name": "claude-toolkit",
+  "version": "1.0.0",
+  "description": "Skills for creating Claude Code plugins, skills, marketplaces, and hooks",
+  "author": {
+    "name": "Mariusz (Maledorak) Korzekwa",
+    "email": "mariusz@korzekwa.dev"
+  },
+  "keywords": ["skills", "plugins", "marketplace", "hooks", "claude-code"]
+}
