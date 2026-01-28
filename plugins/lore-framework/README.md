@@ -115,7 +115,7 @@ npx lore-framework-mcp generate-index      # Generate lore index
 
 ## Version
 
-1.2.6
+1.2.7
 
 ## Author
 

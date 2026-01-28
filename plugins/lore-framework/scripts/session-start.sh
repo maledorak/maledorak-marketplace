@@ -50,8 +50,8 @@ ensure_gitignore "lore/0-session/next-tasks.md"
 
 # Set current user from env var if set
 if [ -n "$LORE_SESSION_CURRENT_USER" ]; then
-    npx -y lore-framework-mcp@1.2.6 set-user --env --quiet 2>/dev/null || true
+    npx -y lore-framework-mcp@1.2.7 set-user --env --quiet 2>/dev/null || true
 fi
 
 # Regenerate next-tasks.md only
-npx -y lore-framework-mcp@1.2.6 generate-index --next-only --quiet 2>/dev/null || true
+npx -y lore-framework-mcp@1.2.7 generate-index --next-only --quiet 2>/dev/null || true

@@ -45,7 +45,7 @@
       "name": "lore-framework",
       "source": "./plugins/lore-framework",
       "description": "[BETA] Manage lore/ directory for tracking tasks, ADRs, wiki, session, and code history in projects",
-      "version": "1.2.6",
+      "version": "1.2.7",
       "keywords": [
         "tasks",
         "adr",

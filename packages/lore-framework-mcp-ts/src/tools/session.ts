@@ -214,10 +214,13 @@ export function registerSessionTools(
       const currentTaskMd = join(sessionDir, 'current-task.md');
       const currentTaskJson = join(sessionDir, 'current-task.json');
 
+      // Always try to unlink - existsSync returns false for broken symlinks
+      // but the symlink file still exists and blocks symlinkSync
       try {
-        if (existsSync(currentTaskMd)) unlinkSync(currentTaskMd);
-      } catch {
-        /* ignore */
+        unlinkSync(currentTaskMd);
+      } catch (e: unknown) {
+        // Ignore ENOENT (file doesn't exist), rethrow others
+        if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;
       }
 
       const relativePath = join('..', relative(loreDir, taskPath));
@@ -358,13 +361,18 @@ export function registerSessionTools(
       const currentTaskJson = join(sessionDir, 'current-task.json');
 
       let cleared = false;
-      if (existsSync(currentTaskMd)) {
+      // Use try/catch instead of existsSync - existsSync returns false for broken symlinks
+      try {
         unlinkSync(currentTaskMd);
         cleared = true;
+      } catch (e: unknown) {
+        if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;
       }
-      if (existsSync(currentTaskJson)) {
+      try {
         unlinkSync(currentTaskJson);
         cleared = true;
+      } catch (e: unknown) {
+        if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;
       }
 
       if (cleared) {

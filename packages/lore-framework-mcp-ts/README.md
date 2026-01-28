@@ -9,7 +9,7 @@ MCP server for **Lore Framework** - AI-readable project memory with task/ADR/wik
 ## Installation
 
 ```bash
-npx lore-framework-mcp@1.2.6
+npx lore-framework-mcp@1.2.7
 ```
 
 Or add to your Claude Code MCP config:
@@ -19,7 +19,7 @@ Or add to your Claude Code MCP config:
   "mcpServers": {
     "lore": {
       "command": "npx",
-      "args": ["-y", "lore-framework-mcp@1.2.6"]
+      "args": ["-y", "lore-framework-mcp@1.2.7"]
     }
   }
 }
