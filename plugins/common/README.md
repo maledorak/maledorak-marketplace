@@ -19,7 +19,7 @@ Guide for creating semantic, version-aware commit messages following Conventiona
 
 From this marketplace:
 ```shell
-/plugin marketplace add .
+/plugin marketplace add maledorak/maledorak-marketplace
 /plugin install common@maledorak-marketplace
 ```
 

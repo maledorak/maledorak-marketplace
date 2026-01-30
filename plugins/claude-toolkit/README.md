@@ -11,6 +11,7 @@ Skills for creating Claude Code plugins, skills, marketplaces, and hooks.
 ## Installation
 
 ```shell
+/plugin marketplace add maledorak/maledorak-marketplace
 /plugin install claude-toolkit@maledorak-marketplace
 ```
 

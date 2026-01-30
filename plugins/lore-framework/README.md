@@ -73,6 +73,7 @@ Claude will read the instructions and copy all files manually.
 ### Option 2: Plugin (CLI only)
 
 ```shell
+/plugin marketplace add maledorak/maledorak-marketplace
 /plugin install lore-framework@maledorak-marketplace
 ```
 
